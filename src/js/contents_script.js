@@ -30,14 +30,7 @@ function getSelectionText(){
     return selectedText
 }
 
-/*document.addEventListener('mouseup', function(){
-    var thetext = getSelectionText()
-    if (thetext.length > 0){ // check there's some text selected
-        console.log(thetext) // logs whatever textual content the user has selected on the page
-        appendBtn()
-    }
-}, false)*/
-
+//드래그 한 부분 복사해서 클립보드에 추가하는 함수
 function copySelectionText(){
     var copysuccess // var to check whether execCommand successfully executed
     try{
@@ -48,6 +41,7 @@ function copySelectionText(){
     return copysuccess
 }
 
+//드래그 후 버튼 생성 함수
 function createtooltip(){ // call this function ONCE at the end of page to create tool tip object
     tooltip = document.createElement('div')
     tooltip.style.cssText =
@@ -61,6 +55,7 @@ function createtooltip(){ // call this function ONCE at the end of page to creat
 let tooltip, hidetooltiptimer
 createtooltip() // create tooltip by calling it ONCE per page. See "Note" below
 
+//드래그 후 생성되는 버튼 위치 정의
 function showtooltip(selected){
     let sel = selected.getRangeAt(0).cloneRange().getBoundingClientRect()
     let relative = document.body.parentNode.getBoundingClientRect();
