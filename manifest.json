@@ -1,0 +1,32 @@
+{
+  // 필수
+  "manifest_version": 2,
+
+  // 고정
+  "name": "스톡인포",
+  "version": "1.0.0",
+  // 추천
+  "description": "확장앱 설명",
+
+  "sidebar_action": {
+    "default_title":  "스톡인",
+    "default_icon": {
+      "16": "./icons/icon16.gif",
+      "32": "./icons/icon32.png"
+    },
+    "default_page": "src/index.html",
+    "use_navigation_bar": true
+  },
+
+  "content_scripts":[
+    {
+      "matches": [
+        "https://www.naver.com/*",
+        "https://news.naver.com/*",
+        "https://search.naver.com/*",
+        "https://m.post.naver.com/*"
+      ],
+      "js" : ["src/js/contents_script.js"]
+    }
+  ]
+}
