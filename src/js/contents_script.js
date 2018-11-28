@@ -1,11 +1,19 @@
 document.body.addEventListener('mouseup', function(e){
     var selected = getSelection() // call getSelectionText() to see what was selected
-    console.log(selected.toString())
-    if (selected.toString().length > 0){ // if selected text length is greater than 0
+    console.log(selected.toString().trim().length)
+    if (selected.toString().trim().length > 0){ // if selected text length is greater than 0
         var copysuccess = copySelectionText() // copy user selected text to clipboard
-        showtooltip(selected)
+        showtooltip(selected, 1)
     }
 }, false)
+
+//드래그 취소 했을 경우 버튼 사라지는 함수
+document.addEventListener("click", function() {
+    var selected = getSelection()
+    if(selected.toString().trim().length === 0) {
+        tooltip.style.opacity = 0
+    }
+});
 
 //드래그 하면 버튼 추가
 function appendBtn() {
@@ -52,19 +60,15 @@ function createtooltip(){ // call this function ONCE at the end of page to creat
     document.body.appendChild(tooltip)
 }
 
-let tooltip, hidetooltiptimer
+let tooltip
 createtooltip() // create tooltip by calling it ONCE per page. See "Note" below
 
 //드래그 후 생성되는 버튼 위치 정의
-function showtooltip(selected){
+function showtooltip(selected, opacity){
     let sel = selected.getRangeAt(0).cloneRange().getBoundingClientRect()
     let relative = document.body.parentNode.getBoundingClientRect();
     console.log(sel)
-    clearTimeout(hidetooltiptimer)
     tooltip.style.left = sel['left'] + "px"
     tooltip.style.top = (sel['bottom'] - relative.top) + "px"
-    tooltip.style.opacity = 1
-    hidetooltiptimer = setTimeout(function(){
-        tooltip.style.opacity = 1
-    }, 2000)
+    tooltip.style.opacity = opacity
 }
