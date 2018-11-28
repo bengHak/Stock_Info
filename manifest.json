@@ -23,10 +23,14 @@
       "matches": [
         "https://www.naver.com/*",
         "https://news.naver.com/*",
+        "https://m.stock.naver.com/*",
+        "https://finance.naver.com/*",
         "https://search.naver.com/*",
         "https://m.post.naver.com/*"
       ],
-      "js" : ["src/js/contents_script.js"]
+      "js" : [
+        "src/js/text_selection.js"
+      ]
     }
   ]
 }
