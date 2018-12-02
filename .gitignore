@@ -4,3 +4,7 @@
 .idea/stock_info.iml
 .idea/workspace.xml
 src/test.html
+
+src/iframe_test.html
+src/js/iframe_control.js
+
