@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta charset="UTF-8"/>
+    <title>사이드바 뮤직 플레이어</title>
+    <link href="./index.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="containter">
+    <div class="title sub" i18n-content="TUTORIAL_TITLE_SUB"></div>
+    <div class="title main" i18n-content="TUTORIAL_TITLE_MAIN"></div>
+    <div class="description" i18n-content="TUTORIAL_DESCRIPTION"></div>
+
+    <div class="image-wrapper">
+        <div class="bg"></div>
+        <img src="img/tutorial_musicplayer.png" />
+    </div>
+</div>
+
+<footer>
+    <div class="settings" id="local-musicplayer">
+        <span class="desc1" i18n-content="OPEN_LOCAL_MUSICPLAYER"></span>
+        <span class="action " i18n-content="LAUNCH_LOCAL_MUSICPLAYER"></span>
+    </div>
+
+    <div class="settings" id="setting-bar" style="display: none;">
+        <span class="desc1" i18n-content="USE_SIDEBAR_MUSICPLAYER"></span>
+        <label class="switch">
+            <input type="checkbox" id="player-mode-checkbox" />
+            <div class="slider round"></div>
+        </label>
+    </div>
+
+    <div class="settings" id="bring-player-here" style="display:none;">
+        <span class="desc1" i18n-content="SIDEBAR_MUSICPLAYER_ALREADY_ACTIVE"></span>
+        <span class="action " i18n-content="BRING_SIDEBAR_MUSICPLAYER"></span>
+    </div>
+
+    <div class="servcie-links">
+        <span class="title" i18n-content="SUPPORTED_MUSIC_SERVICES"></span>
+        <button id="open_genie" class="genie"></button>
+        <button id="open_mnet" class="mnet"></button>
+        <button id="open_bugs" class="bugs"></button>
+        <button id="open_navermusic" class="naver"></button>
+    </div>
+</footer>
+
+<script src="./wl.RuntimeMessage.js"></script>
+<script src="./wl.Storage.js"></script>
+<script src="./i18n_contents.js"></script>
+<script src="./index.js"></script>
+</body>
+</html>

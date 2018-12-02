@@ -1,0 +1,161 @@
+__COMPANY_GROUP__ = [{
+    id: 'all',
+    name: '전체',
+    alias : null,
+    companies: null
+}, {
+    id: 'portal',
+    name: '포털',
+    alias: '국내 포털 사이트',
+    companies: [{
+        name: '네이버 웹툰',
+        logo: 'logo-naver',
+        logoShadow: false,
+        link: 'http://m.comic.naver.com/index.nhn',
+    }, {
+        name: '다음 웹툰',
+        logo: 'logo-daum',
+        logoShadow: true,
+        link: 'http://m.webtoon.daum.net/m/'
+    }, {
+        name: '케이툰',
+        logo: 'logo-ktoon',
+        logoShadow: false,
+        link: 'https://m.myktoon.com/web/main.kt'
+    }, {
+        name: 'T플레이',
+        logo: 'logo-tplay',
+        logoShadow: true,
+        link: 'http://m.onestore.co.kr/mobilepoc/webtoon/weekdayList.omp'
+    }, {
+        name: '네이트웹툰',
+        logo: 'logo-nate',
+        logoShadow: true,
+        link: 'http://m.comics.nate.com/main2/'
+    }]
+}, {
+    id: 'special',
+    name: '전문',
+    alias: '웹툰 전문 사이트',
+    companies: [{
+        name: '레진코믹스',
+        logo: 'logo-lezhin',
+        logoShadow: false,
+        link: 'https://www.lezhin.com'
+    }, {
+        name: '카카오페이지',
+        logo: 'logo-kakao',
+        logoShadow: false,
+        link: 'http://page.kakao.com/main'
+    }, {
+        name: '피키툰',
+        logo: 'logo-piki',
+        logoShadow: false,
+        link: 'https://www.pikicast.com/#!/menu=category&category_id=227'
+    }, {
+        name: '코믹GT',
+        logo: 'logo-gt',
+        logoShadow: false,
+        link: 'http://www.comicgt.com/'
+    }, {
+        name: '코믹통',
+        logo: 'logo-tong',
+        logoShadow: true,
+        link: 'http://www.comictong.com/'
+    }, {
+        name: '폭스툰',
+        logo: 'logo-fox',
+        logoShadow: false,
+        link: 'http://www.foxtoon.com/'
+    }, {
+        name: '뿌딩',
+        logo: 'logo-bbuding',
+        logoShadow: false,
+        link: 'http://bbuding.com/'
+    }, {
+        name: '코미코',
+        logo: 'logo-comico',
+        logoShadow: true,
+        link: 'http://comico.kr/m/'
+    }, {
+        name: '피너툰',
+        logo: 'logo-peanut',
+        logoShadow: false,
+        link: 'http://www.peanutoon.com/'
+    }, {
+        name: '봄툰',
+        logo: 'logo-bomtoon',
+        logoShadow: false,
+        link: 'http://www.bomtoon.com/'
+    }, {
+        name: '투믹스',
+        logo: 'logo-toomics',
+        logoShadow: false,
+        link: 'http://m.toomics.com/'
+    }, {
+        name: '코미카',
+        logo: 'logo-comica',
+        logoShadow: false,
+        link: 'https://m.comica.com/'
+    }, {
+        name: '북큐브',
+        logo: 'logo-bookcube',
+        logoShadow: false,
+        link: 'http://www.bookcube.com/toon/main.asp'
+    }, {
+        name: '탑툰',
+        logo: 'logo-toptoon',
+        logoShadow: true,
+        link: 'https://toptoon.com/'
+    }, {
+        name: '진코믹스',
+        logo: 'logo-jin',
+        logoShadow: false,
+        link: 'http://www.jincomics.com/'
+    }, {
+        name: '스푼코믹스',
+        logo: 'logo-spoon',
+        logoShadow: true,
+        link: 'http://www.spooncomics.com/'
+    }]
+}, {
+    id: 'newspaper',
+    name: '신문사',
+    alias: '신문사 웹툰',
+    companies: [{
+        name: '머니투데이',
+        logo: 'logo-money',
+        logoShadow: true,
+        link: 'http://mcomic.mt.co.kr/'
+    }, {
+        name: '스포츠서울',
+        logo: 'logo-seoul',
+        logoShadow: true,
+        link: 'http://m.comic.sportsseoul.com/'
+    }, {
+        name: '스포츠경향',
+        logo: 'logo-khan',
+        logoShadow: true,
+        link: 'http://m.sports.khan.co.kr/'
+    }, {
+        name: '한겨례',
+        logo: 'logo-han',
+        logoShadow: true,
+        link: 'http://m.hani.co.kr/arti/cartoon/home01.html'
+    }]
+}, {
+    id: 'game',
+    name: '게임',
+    alias: '게임 관련 웹툰',
+    companies: [{
+        name: 'NC코믹스',
+        logo: 'logo-nc',
+        logoShadow: false,
+        link: 'http://www.nc-comix.com/ko'
+    }, {
+        name: '배틀코믹스',
+        logo: 'logo-battle',
+        logoShadow: true,
+        link: 'http://www.battlecomics.co.kr/'
+    }]
+}];

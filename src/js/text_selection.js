@@ -60,13 +60,15 @@ function copySelectionText() {
 
 //드래그 후 버튼 생성 함수
 function createtooltip() { // call this function ONCE at the end of page to create tool tip object
-    tooltip = document.createElement('div')
+    tooltip = document.createElement('a')
     tooltip.style.cssText =
         'position:absolute; background:black; color:white; padding:4px;z-index:10000;'
         + 'border-radius:2px; font-size:12px;box-shadow:3px 3px 3px rgba(0,0,0,.4);'
         + 'opacity:0;transition:opacity 0.4s'
-    tooltip.innerHTML = '여기에 버튼'
-    document.body.appendChild(tooltip)
+    tooltip.innerHTML = '여기에 버튼';
+    // tooltip.setAttribute('href', 'https://m.naver.com');
+    // tooltip.setAttribute('target', '_blank');
+    document.body.appendChild(tooltip);
 }
 
 let tooltip
@@ -81,3 +83,11 @@ function showtooltip(selected, block) {
     tooltip.style.top = (sel['bottom'] - relative.top) + "px"
     tooltip.style.opacity = 1;
 }
+
+tooltip.addEventListener('click',(tab)=>{
+    console.log('Clicked');
+    console.log(tab);
+    whale.runtime.sendMessage('docking', res=>{
+        console.log(res);
+    });
+});

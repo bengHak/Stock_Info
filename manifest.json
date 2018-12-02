@@ -9,28 +9,41 @@
   "description": "확장앱 설명",
 
   "sidebar_action": {
-    "default_title":  "스톡인",
+    "default_title":  "스톡인포",
     "default_icon": {
       "16": "./icons/icon16.gif",
       "32": "./icons/icon32.png"
     },
     "default_page": "src/index.html",
-    "use_navigation_bar": true
+    "use_navigation_bar": true,
+    "mobile_user_agent": true
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
   },
 
   "content_scripts":[
     {
       "matches": [
-        "https://www.naver.com/*",
+        "https://m.naver.com/*",
         "https://news.naver.com/*",
+        "https://m.news.naver.com/*",
         "https://m.stock.naver.com/*",
         "https://finance.naver.com/*",
+        "https://kr.tradingview.com/*",
         "https://m.post.naver.com/*"
       ],
       "js" : [
         "src/js/text_selection.js",
-        "src/js/floating_nav.js"
+        "src/js/floating_nav.js",
+        "src/js/sidebar_only.js"
       ]
     }
+  ],
+
+  "permissions": [
+    "notifications"
   ]
 }

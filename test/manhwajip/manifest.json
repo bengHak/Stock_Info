@@ -1,0 +1,31 @@
+{
+   "background": {
+      "scripts": [ "js/background.js" ]
+   },
+   "content_scripts": [ {
+      "all_frames": false,
+      "js": [ "js/contentscript.js" ],
+      "matches": [ "https://www.lezhin.com/*" ],
+      "run_at": "document_end"
+   } ],
+   "description": "",
+   "icons": {
+      "128": "icons/icon128.png",
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuoc9RHPPcznbRyJO5CAB0VHUv7BVwGIlt05/tngzsHrjzyRSJzjkmqS6I1TnG5bmAplRnt+gAg1p8LcEd26ezD+SHb/8ip3avYODUiRqgrbL7s6XsYy63+dZ50I9vQnNrid2/u3YQb7o1b1iYxxsLB/6t0r2SKgIwXzTf4RtnVCFQnP9U/Ts+9+JP4xMh7h49HSgIn6gmG3k5neBSqpATv2YZSdh/rq6FyWyzQ/bV2skk+60pji/jX7vsVEEYM67d0mXx6BbV1mjX8mZfBSIqjqN2J0wl2ot0OjyZ11+kaD87RptWmWT9NI7QUUxJMp041AX6t6d/mKQMzYXj07etwIDAQAB",
+   "manifest_version": 2,
+   "name": "ManhwaZip",
+   "permissions": [ "tabs" ],
+   "sidebar_action": {
+      "default_icon": {
+         "16": "icons/icon16.png"
+      },
+      "default_page": "index.html",
+      "default_title": "ManhwaZip"
+   },
+   "update_url": "https://store.whale.naver.com/update/whx",
+   "version": "0.0.1",
+   "whale_extension": true
+}

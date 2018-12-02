@@ -1,0 +1,1 @@
+whale.runtime.sendMessage('showIndex');

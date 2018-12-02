@@ -1,0 +1,52 @@
+{
+   "background": {
+      "scripts": [ "js/wl.RuntimeMessage.js", "js/contextmenu.js", "js/background.js" ]
+   },
+   "commands": {
+      "toggle-navermemo": {
+         "description": "Toggle Sidebar Naver Memo",
+         "suggested_key": {
+            "default": "Alt+M",
+            "mac": "Alt+M",
+            "windows": "Alt+M"
+         }
+      }
+   },
+   "content_scripts": [ {
+      "css": [ "css/service_injection.css" ],
+      "matches": [ "*://m.memo.naver.com/*", "*://test-m.memo.naver.com/*" ],
+      "run_at": "document_start"
+   }, {
+      "js": [ "js/wl.RuntimeMessage.js", "js/service_injection.js" ],
+      "matches": [ "*://m.memo.naver.com/*", "*://test-m.memo.naver.com/*" ],
+      "run_at": "document_end"
+   }, {
+      "js": [ "js/login_injection.js" ],
+      "matches": [ "*://nid.naver.com/nidlogin.login*" ],
+      "run_at": "document_end"
+   } ],
+   "default_locale": "ko",
+   "description": "__MSG_APP_DESCRIPTION__",
+   "icons": {
+      "128": "img/icon128.png",
+      "16": "img/icon_contextmenu.png",
+      "48": "img/icon48.png"
+   },
+   "incognito": "split",
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArAj/064urtyUxbhEptXbL85l0r4/e+rLckrnN3QaC1tjBHIV4EdnN6jaQRuwKLcubbgB5BgS9fQNqvN6qLxaDSwLrI72R+M9UnHvH8y5we5vwV8q3jK+dbyZl3+phoytzTRY9+D8xd32trzeOMPIi1tRXVFPBKj45IhDILJMLCDLI/aoGHDiIEzdxncgAra+6WVHIiRUMubngJP53g8/wbRl1MxF1ZqLjHmzWcIeT3DtUK7USqBtuGSOHuyjN52tb0IZuhOlTZvemeH/WqNjwWAjsK8axbmoGgjv4zoOnj+n6Dfji2/vt2q/S/D5PWkkoNYq9GHsh962lfGPmwjNgQIDAQAB",
+   "manifest_version": 2,
+   "minimum_whale_version": "0.7.32.0",
+   "name": "__MSG_APP_NAME__",
+   "permissions": [ "tabs", "utility", "storage", "webRequest", "webRequestBlocking", "contextMenus", "http://*/*", "https://*/*", "\u003Call_urls>" ],
+   "sidebar_action": {
+      "default_icon": {
+         "16": "img/icon16.png"
+      },
+      "default_page": "index.html",
+      "default_title": "__MSG_APP_NAME__",
+      "use_navigation_bar": false
+   },
+   "update_url": "https://store.whale.naver.com/update/whx",
+   "version": "1.1.10",
+   "whale_extension": true
+}

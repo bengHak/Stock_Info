@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Local Music Player</title>
+  <link rel="stylesheet" type="text/css" href="./local-player.css"/>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta charset="utf-8"/>
+</head>
+
+<body class="empty">
+<div class="extension_ghostimage"></div>
+<div class="extension_toast hide">
+  <p>TEST</p>
+</div>
+
+<div class="extension_settings">
+  <div class="setting_options">
+    <div class="equalizer">
+      <span class="title">이퀄라이저</span>
+      <span class="close"></span>
+      <div class="custom_equalizer">
+        <div class="band">
+          <input type="range" min="-15" max="15" data-index="0" data-hz="32">
+        </div>
+        <div class="band">
+          <input type="range" min="-15" max="15" data-index="1" data-hz="64">
+        </div>
+        <div class="band">
+          <input type="range" min="-15" max="15" data-index="2" data-hz="125">
+        </div>
+        <div class="band">
+          <input type="range" min="-15" max="15" data-index="3" data-hz="250">
+        </div>
+        <div class="band">
+          <input type="range" min="-15" max="15" data-index="4" data-hz="500">
+        </div>
+        <div class="band">
+          <input type="range" min="-15" max="15" data-index="5" data-hz="1k">
+        </div>
+        <div class="band">
+          <input type="range" min="-15" max="15" data-index="6" data-hz="2k">
+        </div>
+        <div class="band">
+          <input type="range" min="-15" max="15" data-index="7" data-hz="4k">
+        </div>
+        <div class="band">
+          <input type="range" min="-15" max="15" data-index="8" data-hz="8k">
+        </div>
+        <div class="band">
+          <input type="range" min="-15" max="15" data-index="9" data-hz="16k">
+        </div>
+      </div>
+      <ul>
+        <li>FLAT</li>
+        <li>ACOUSTIC</li>
+        <li>BASS BOOSTER</li>
+        <li>FLAT</li>
+        <li>FLAT</li>
+        <li>FLAT</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="extension_body">
+
+  <div class="extension_start empty">
+    <div class="dashbox">
+      <div class="add">
+        <label for="file_local_music"></label>
+      </div>
+      <div class="title">
+        파일을 드래그하거나<br/>
+        버튼을 눌러 음악을 추가하세요.
+      </div>
+    </div>
+  </div>
+
+  <div class="extension_header">
+    <div class="extension_cover">
+      <img src="./img/default_album_cover.png" alt="앨범 이미지">
+    </div>
+    <div class="extension_info">
+      <div class="info_title">
+        <a href="#" target="blank"><span>재생 중인 곡이 없습니다</span></a>
+      </div>
+      <div class="info_divider"></div>
+      <div class="info_album">
+        <a href="#" target="blank"><span>-</span></a>
+      </div>
+      <div class="info_artist">
+        <a href="#" target="blank"><span>-</span></a>
+      </div>
+    </div>
+    <div class="extension_controller">
+      <a href="#" class="prev" title="이전곡(Left)"></a>
+      <a href="#" class="play" title="재생/일시정지(Space)"></a>
+      <a href="#" class="next" title="다음곡(Right)"></a>
+      <a href="#" class="lyrics" title="가사보기(L)"></a>
+      <a href="#" class="repeat" title="반복모드(R)"></a>
+      <a href="#" class="shuffle" title="재생모드(S)"></a>
+      <a href="#" class="icon setting"></a>
+      <div class="volume_wrap">
+        <a href="#" class="volume" title="볼륨(UP/DOWN)">
+          <span class="volume_effect"></span>
+        </a>
+        <div class="volume_bar">
+          <span class="bar">
+              <span class="now" style="height: 70%;"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="extension_progress">
+      <div class="progress_bar">
+        <div class="now" style="width: 45%;">
+          <div class="handle"></div>
+        </div>
+      </div>
+      <div class="progress_duration">
+        <div class="now">00:00</div>
+        <div class="total">00:00</div>
+      </div>
+    </div>
+  </div>
+  <div class="extension_playlist">
+    <div class="extension_lyrics">
+      <pre></pre>
+      <span class="close"></span>
+    </div>
+    <ul></ul>
+    <div class="extension_file_empty">
+      <div class="logo">
+        <div class="logo-image">
+        </div>
+        Music Player
+      </div>
+    </div>
+  </div>
+  <div class="extension_footer">
+    <div class="extension_btns">
+      <a href="#" class="all_select btn" title="전체선택"><span></span>전체선택</a>
+      <a href="#" class="delete btn dimmed" title="삭제"><span></span>삭제</a>
+      <input type="file" id="file_local_music" multiple/>
+      <label for="file_local_music" class="btn add_music"><span></span>추가</label>
+    </div>
+  </div>
+
+  <div class="extension_close">
+    <div class="wrapper">
+      <div class="btn menu">
+        <div class="arrow"></div>
+      </div>
+      <button class="btn home" title="첫 화면으로"></button>
+    </div>
+  </div>
+</div>
+
+<div class="extension_loading">
+  <div class="msg">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+    파일을 추가하고 있습니다.
+  </div>
+</div>
+</body>
+<script src="local-player.js"></script>
+
+</html>

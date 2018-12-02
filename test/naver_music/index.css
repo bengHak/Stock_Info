@@ -1,0 +1,240 @@
+@charset "utf-8";
+
+body {
+  height: auto;
+  font-family: 'Roboto', 'Arial', 'Malgun Gothic', '맑은 고딕', sans-serif;
+  background-color:#fff;
+}
+
+.containter {
+  width: 100%;
+  text-align: center;
+  margin: 106px auto;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 400;
+  font-family: 'Nanum Barun Gothic', 'NanumBarunGothic', 'NanumBarunGothicOTF', '나눔바른고딕', 'Malgun Gothic', '맑은 고딕', sans-serif;
+}
+
+.title.sub {
+  color: #000000;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 30px;
+  margin-top: 30px;
+}
+
+.title.main {
+  color: #000000;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 40px;
+  margin-bottom: 15px;
+}
+
+.description {
+  font-weight: 400;
+  line-height: 22px;
+  width: 270px;
+  height: 36px;
+  color: #888888;
+  font-size: 13px;
+  margin: 0 auto;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 275px;
+  height: 226px;
+  margin: 50px auto 0;
+}
+
+.image-wrapper img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+footer {
+  width: 100%;
+  min-width: 360px;
+  position:fixed;
+  left:0;
+  bottom:0;
+  z-index: 10;
+}
+
+.servcie-links {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 20px;
+  height: 50px;
+  text-align: left;
+  overflow: hidden;
+  background: #fff;
+}
+
+.servcie-links .title {
+  color: #999;
+  font-family: 'Nanum Barun Gothic', 'NanumBarunGothic', 'NanumBarunGothicOTF', '나눔바른고딕', 'Malgun Gothic', '맑은 고딕', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+}
+
+.servcie-links button {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:100%;
+  color:transparent;
+  cursor: pointer;
+  padding: 0;
+  float: right;
+  margin-left: 8px;
+}
+
+.servcie-links button.naver {
+  background-image:url(./img/btn_Navermusic_2x.png);
+}
+
+.servcie-links button.bugs {
+  background-image:url(./img/btn_Bugs_2x.png);
+}
+
+.servcie-links button.mnet {
+  background-image:url(./img/btn_mnet_2x.png);
+}
+
+.servcie-links button.genie {
+  background-image:url(./img/btn_genie_2x.png);
+}
+
+.settings {
+  background-color: #fff;
+  width: 100%;
+  margin: auto 0;
+  height: 54px;
+  line-height: 54px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.settings .desc1 {
+  display:inline-block;
+  color: #000;
+  font-family: 'Nanum Barun Gothic', 'NanumBarunGothic', 'NanumBarunGothicOTF', '나눔바른고딕', 'Malgun Gothic', '맑은 고딕', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.settings .action {
+  display: inline-block;
+  line-height: normal;
+  color: #393835;
+  position: absolute;
+  right: 20px;
+  top: 12px;
+  padding: 6px 12px 6px 29px;
+  border-radius: 14px;
+  border: 1px solid #d6d5d2;
+  cursor: pointer;
+}
+
+.settings .action:hover {
+  background-color: #f7f7f7;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: absolute;
+  right: 22px;
+  top: 20px;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .15s;
+  transition: .15s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .15s;
+  transition: .15s;
+}
+
+input:checked + .slider {
+  background-color: #3fd58e
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #3fd58e;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 17px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#local-musicplayer {
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+}
+
+#local-musicplayer,
+#bring-player-here {
+  position:relative;
+}
+
+#local-musicplayer .action {
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+  background-position: 10px 7px;
+  background-image:url(./img/ic_play_2x.png);
+  font-size:12px;
+}
+
+#bring-player-here .action {
+  padding: 6px 12px;
+}
