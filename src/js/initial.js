@@ -1,1 +1,3 @@
-whale.runtime.sendMessage('showIndex');
+setTimeout(()=>{
+    whale.runtime.sendMessage('showIndex');
+}, 500);

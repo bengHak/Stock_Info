@@ -36,7 +36,7 @@ if(window.innerWidth < 590) {
     navBar.style.top = 0;
     navBar.style.right = 0;
     navBar.style.left = 0;
-    navBar.style.backgroundColor = '#e5e5e5';
+    navBar.style.backgroundColor = '#081245';
     navBar.style.zIndex = 5000;
     navBar.style.display = 'block';
     navBar.style.padding = '6px 6px 2px 6px';
@@ -75,8 +75,52 @@ if(window.innerWidth < 590) {
     tn3.setAttribute('id','tn3');
     // tn3.setAttribute('src', topNav['d3']);
     tn3.setAttribute('width', '40px');
-    tn3.setAttribute('onclick', 'javascript:location.href="https://m.stock.naver.com"');
     tn3.style.margin = '0 15px 0 15px';
+    tn3.onclick = ()=>{
+        modalWin.style.display = 'block';
+    };
+
+    var modalWin = document.createElement('div');
+    modalWin.style.cssText = '' +
+        'display: none; /* Hidden by default */\n' +
+        '    position: fixed; /* Stay in place */\n' +
+        '    z-index: 5001; /* Sit on top */\n' +
+        '    left: 0;\n' +
+        '    top: 0;\n' +
+        '    width: 100%; /* Full width */\n' +
+        '    height: 100%; /* Full height */\n' +
+        '    overflow: auto; /* Enable scroll if needed */\n' +
+        '    background-color: rgb(0,0,0); /* Fallback color */\n' +
+        '    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */';
+
+    window.onclick = function(event) {
+        if (event.target == modalWin) {
+            modalWin.style.display = "none";
+        }
+    };
+
+    var mdContent = document.createElement('div');
+    mdContent.setAttribute('class', 'modal-content');
+    mdContent.style.cssText = 'background-color: #fefefe;\n' +
+        '    margin: 15% auto; /* 15% from the top and centered */\n' +
+        '    padding: 20px;\n' +
+        '    border: 1px solid #888;\n' +
+        '    width: 80%; /* Could be more or less, depending on screen size */';
+    var mdClose = document.createElement('span');
+    mdClose.setAttribute('class','close');
+    mdClose.text = '&times;';
+    mdClose.style.cssText = 'color: #aaa;\n' +
+        '    float: right;\n' +
+        '    font-size: 28px;\n' +
+        '    font-weight: bold;';
+
+    var mdText = document.createElement('p');
+    mdText.text = 'Some text in the Modal..';
+
+    mdContent.appendChild(mdText);
+    mdContent.appendChild(mdClose);
+    modalWin.appendChild(mdContent);
+    document.body.appendChild(modalWin);
 
     var tn4 = document.createElement('img');
     tn4.setAttribute('id','tn4');
