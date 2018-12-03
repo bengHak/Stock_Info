@@ -22,6 +22,13 @@ if(window.innerWidth < 590) {
         'c4': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249ecd9ed955561de79b2/d552f0b5659d0bc653b7e26b11892558/tnc5.png'
     };
 
+    var fltBtn = {
+        "bd0":"https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0258b29901902416b02492/6ca650313b59736591f7ec0d613b4d46/floatingBtn0.png",
+        "bc0":"https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0258b29901902416b02492/b8169d08bc305ac549ab7e9460411f8d/floatingBtn0-1.png",
+        'b1':'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0258b29901902416b02492/6a257301ae16d95f1a0d26bf69c6405d/floatingBtn1.png',
+        'b2':'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0258b29901902416b02492/e49e85067277b30bd99a00885a1e66ac/floatingBtn3.png'
+    };
+
     var navBar = document.createElement('div');
     navBar.setAttribute("id", "stock_info_nav");
 //navBar 스타일
@@ -76,41 +83,39 @@ if(window.innerWidth < 590) {
     // tn4.setAttribute('src', topNav['d4']);
     tn4.setAttribute('width', '40px');
     tn4.onclick=()=>{
-        localStorage.setItem('mypage',1);
-        location.href = "https://m.stock.naver.com/#";
-        // console.log("onclick tn4");
-        // document.getElementsByClassName("Ntool_button _btn_my")[0].click();
-        // setTimeout(()=>{
-        //     document.getElementsByClassName("Ntool_button _btn_my")[0].click();
-        //     console.log("onclick tn4");
-        //     console.log(document.getElementsByClassName("Ntool_button _btn_my")[0]);
-        // },1000);
+        if(window.location.host != 'm.stock.naver.com'){
+            location.href = "https://m.stock.naver.com/#";
+        }
+        else{
+            document.getElementsByClassName("Ntool_button _btn_my")[0].click();
+        }
     };
     tn4.style.margin = '0 10px 0 10px';
 
-    window.onload = ()=>{
-        if(location.href == "https://m.stock.naver.com/#"){
+    window.onload = () => {
+        if (window.location.href == "https://m.stock.naver.com/#") {
             console.log("onloaded");
-            var mypage = localStorage.getItem('mypage');
-            console.log(mypage);
-            if(mypage == 1){
-                document.getElementsByClassName("Ntool_button _btn_my")[0].click();
-                // setTimeout(()=>{
-                //     document.getElementsByClassName("Ntool_button _btn_my")[0].click();
-                // },1000);
-                console.log("must be clicked");
-                localStorage.setItem('mypage', 0);
-            }
+            console.log(window.location.pathname);
+            document.getElementsByClassName("Ntool_button _btn_my")[0].click();
         }
     };
 
     switch (window.location.host) {
         case 'm.stock.naver.com':{
-            tn0.setAttribute('src', topNav['c0']);
-            tn1.setAttribute('src', topNav['d1']);
-            tn2.setAttribute('src', topNav['d2']);
-            tn3.setAttribute('src', topNav['d3']);
-            tn4.setAttribute('src', topNav['d4']);
+            if(window.location.pathname === '/'){
+                tn0.setAttribute('src', topNav['d0']);
+                tn1.setAttribute('src', topNav['d1']);
+                tn2.setAttribute('src', topNav['d2']);
+                tn3.setAttribute('src', topNav['d3']);
+                tn4.setAttribute('src', topNav['c4']);
+            }
+            else {
+                tn0.setAttribute('src', topNav['c0']);
+                tn1.setAttribute('src', topNav['d1']);
+                tn2.setAttribute('src', topNav['d2']);
+                tn3.setAttribute('src', topNav['d3']);
+                tn4.setAttribute('src', topNav['d4']);
+            }
             break;
         }
         case 'kr.tradingview.com':{
@@ -129,19 +134,11 @@ if(window.innerWidth < 590) {
             tn4.setAttribute('src', topNav['d4']);
             break;
         }
-        case 'm.stock.naver.com':{
+        case 'daum.net':{
             tn0.setAttribute('src', topNav['d0']);
             tn1.setAttribute('src', topNav['d1']);
             tn2.setAttribute('src', topNav['d2']);
             tn3.setAttribute('src', topNav['c3']);
-            tn4.setAttribute('src', topNav['d4']);
-            break;
-        }
-        case 'm.stock.naver.com':{
-            tn0.setAttribute('src', topNav['d0']);
-            tn1.setAttribute('src', topNav['c1']);
-            tn2.setAttribute('src', topNav['d2']);
-            tn3.setAttribute('src', topNav['d3']);
             tn4.setAttribute('src', topNav['d4']);
             break;
         }
@@ -155,17 +152,16 @@ if(window.innerWidth < 590) {
         '\theight:60px;\n' +
         '\tbottom:10px;\n' +
         '\tright:5px;\n' +
-        //'\tbackground-color:#0C9;\n' +
         '\tcolor:#FFF;\n' +
-        '\tborder-radius:50px;\n' +
+        '\tborder-radius:50%;\n' +
         '\ttext-align:center;\n' +
         'z-index:5000;';
     //'\tbox-shadow: 2px 2px 3px #999;'
-    var floatBtnImgSrc = "https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0258b29901902416b02492/6ca650313b59736591f7ec0d613b4d46/floatingBtn0.png";
-    var floatBtnImg = document.createElement('img');
-    floatBtnImg.setAttribute('src', floatBtnImgSrc);
-    floatBtnImg.setAttribute('width', '60px');
-//floatBtnImg.style.opacity = 1;
+    var fltImg0 = document.createElement('img');
+    fltImg0.setAttribute('id','fltBtn0');
+    fltImg0.setAttribute('src', fltBtn.bd0);
+    fltImg0.setAttribute('width', '60px');
+//fltImg0.style.opacity = 1;
 
     var floatBtn1 = document.createElement('div');
     floatBtn1.setAttribute("id", "floating-button-1");
@@ -175,13 +171,18 @@ if(window.innerWidth < 590) {
         '\theight:60px;\n' +
         '\tbottom:80px;\n' +
         '\tright:5px;\n' +
-        '\tbackground-color:#0C9;\n' +
         '\tcolor:#FFF;\n' +
-        '\tborder-radius:50px;\n' +
+        '\tborder-radius:50%;\n' +
         '\ttext-align:center;\n' +
-        '\tbox-shadow: 2px 2px 3px #999;' +
+        '\tbox-shadow: 0px 0px 20px #000;' +
         'z-index:5000;' +
+        'display:none;'+
         'opacity:0;transition:opacity 0.4s';
+    var fltImg1 = document.createElement('img');
+    fltImg1.setAttribute('id', 'fltBtn1');
+    fltImg1.setAttribute('src', fltBtn.b1);
+    fltImg1.setAttribute('width', '60px');
+    fltImg1.setAttribute('height', '60px');
 
     var floatBtn2 = document.createElement('div');
     floatBtn2.setAttribute("id", "floating-button-2");
@@ -191,13 +192,18 @@ if(window.innerWidth < 590) {
         '\theight:60px;\n' +
         '\tbottom:150px;\n' +
         '\tright:5px;\n' +
-        '\tbackground-color:#0C9;\n' +
         '\tcolor:#FFF;\n' +
         '\tborder-radius:50px;\n' +
         '\ttext-align:center;\n' +
         '\tbox-shadow: 2px 2px 3px #999;' +
         'z-index:5000;' +
+        'display:none;'+
         'opacity:0;transition:opacity 0.4s';
+    var fltImg2 = document.createElement('img');
+    fltImg2.setAttribute('id', 'fltBtn2');
+    fltImg2.setAttribute('src', fltBtn.b2);
+    fltImg2.setAttribute('width', '60px');
+    fltImg2.setAttribute('height', '60px');
 
     document.body.style.marginTop = '60px';
     document.body.appendChild(navBar);
@@ -209,10 +215,13 @@ if(window.innerWidth < 590) {
     document.getElementById('stock_info_nav').appendChild(tn2);
     document.getElementById('stock_info_nav').appendChild(tn3);
     document.getElementById('stock_info_nav').appendChild(tn4);
-    document.getElementById('floating-button-0').appendChild(floatBtnImg);
+    document.getElementById('floating-button-0').appendChild(fltImg0);
+    document.getElementById('floating-button-1').appendChild(fltImg1);
+    document.getElementById('floating-button-2').appendChild(fltImg2);
 
     //네이버 주식
     tn0.addEventListener('mouseover', () => {
+        console.log(window.location.pathname);
         localStorage.setItem("before", document.getElementById('tn0').src);
         document.getElementById('tn0').src = topNav['h0'];
     });
@@ -257,16 +266,26 @@ if(window.innerWidth < 590) {
         document.getElementById('tn4').src = localStorage.getItem('before');
     });
 
+    //Floating Button 클릭 처리
     var isOpened = false;
     floatBtn.addEventListener('click', () => {
         if(isOpened){
+            document.getElementById('fltBtn0').src = fltBtn.bd0;
             document.getElementById('floating-button-1').style.opacity = 0;
             document.getElementById('floating-button-2').style.opacity = 0;
+            setTimeout(()=>{
+                document.getElementById('floating-button-1').style.display = 'none';
+                document.getElementById('floating-button-2').style.display = 'none';
+            }, 300);
             isOpened = false;
         }
         else{
-            document.getElementById('floating-button-1').style.opacity = 1;
-            document.getElementById('floating-button-2').style.opacity = 1;
+            document.getElementById('floating-button-1').style.display = 'block';
+            document.getElementById('floating-button-2').style.display = 'block';
+            setTimeout(()=>{
+                document.getElementById('floating-button-1').style.opacity = 1;
+                document.getElementById('floating-button-2').style.opacity = 1;
+            },300);
             isOpened = true;
         }
         whale.runtime.sendMessage('badge4');
