@@ -1,4 +1,4 @@
-console.log(window.innerWidth);
+// console.log(window.innerWidth);
 if(window.innerWidth < 590) {
 
     var last_known_scroll_position = 0;
@@ -33,38 +33,119 @@ if(window.innerWidth < 590) {
     navBar.style.zIndex = 5000;
     navBar.style.display = 'block';
     navBar.style.padding = '6px 6px 2px 6px';
-    navBar.style.alignItems = 'center';
+    navBar.style.textAlign = 'center';
 
-    console.log();
-    var tnd0 = document.createElement('img');
-    tnd0.setAttribute('src', topNav['d0']);
-    tnd0.setAttribute('width', '40px');
-    tnd0.setAttribute('onclick', 'javascript:location.href="https://m.stock.naver.com"');
-    tnd0.style.margin = '0 10px 0 10px';
+    console.log(sessionStorage.getItem('clicked'));
 
-    var tnd1 = document.createElement('img');
-    tnd1.setAttribute('src', topNav['d1']);
-    tnd1.setAttribute('width', '40px');
-    tnd1.setAttribute('onclick', 'javascript:location.href="https://kr.tradingview.com/"');
-    tnd1.style.margin = '0 10px 0 10px';
+    var tn0 = document.createElement('img');
+    tn0.setAttribute('id','tn0');
+    tn0.setAttribute('width', '40px');
+    //tn0.setAttribute('onclick', 'javascript: hello();');
+    tn0.onclick = ()=>{
+        console.log('onclick');
+        location.href = "https://m.stock.naver.com";
+    };
+    tn0.style.margin = '0 10px 0 10px';
 
-    var tnd2 = document.createElement('img');
-    tnd2.setAttribute('src', topNav['d2']);
-    tnd2.setAttribute('width', '40px');
-    tnd2.setAttribute('onclick', 'javascript:location.href="https://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=101"');
-    tnd2.style.margin = '0 10px 0 10px';
+    var tn1 = document.createElement('img');
+    tn1.setAttribute('id','tn1');
+    // tn1.setAttribute('src', topNav['d1']);
+    tn1.setAttribute('width', '40px');
+    tn1.onclick = ()=>{
+        location.href = "https://kr.tradingview.com/";
+        sessionStorage.setItem("clicked", 1);
+    };
+    tn1.style.margin = '0 10px 0 10px';
 
-    var tnd3 = document.createElement('img');
-    tnd3.setAttribute('src', topNav['d3']);
-    tnd3.setAttribute('width', '40px');
-    tnd3.setAttribute('onclick', 'javascript:location.href="https://m.stock.naver.com"');
-    tnd3.style.margin = '0 10px 0 10px';
+    var tn2 = document.createElement('img');
+    tn2.setAttribute('id','tn2');
+    // tn2.setAttribute('src', topNav['d2']);
+    tn2.setAttribute('width', '40px');
+    tn2.setAttribute('onclick', 'javascript:location.href="https://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=101"');
+    tn2.style.margin = '0 10px 0 10px';
 
-    var tnd4 = document.createElement('img');
-    tnd4.setAttribute('src', topNav['d4']);
-    tnd4.setAttribute('width', '40px');
-    tnd4.setAttribute('onclick', 'javascript:location.href="https://m.stock.naver.com"');
-    tnd4.style.margin = '0 10px 0 10px';
+    var tn3 = document.createElement('img');
+    tn3.setAttribute('id','tn3');
+    // tn3.setAttribute('src', topNav['d3']);
+    tn3.setAttribute('width', '40px');
+    tn3.setAttribute('onclick', 'javascript:location.href="https://m.stock.naver.com"');
+    tn3.style.margin = '0 10px 0 10px';
+
+    var tn4 = document.createElement('img');
+    tn4.setAttribute('id','tn4');
+    // tn4.setAttribute('src', topNav['d4']);
+    tn4.setAttribute('width', '40px');
+    tn4.onclick=()=>{
+        localStorage.setItem('mypage',1);
+        location.href = "https://m.stock.naver.com/#";
+        // console.log("onclick tn4");
+        // document.getElementsByClassName("Ntool_button _btn_my")[0].click();
+        // setTimeout(()=>{
+        //     document.getElementsByClassName("Ntool_button _btn_my")[0].click();
+        //     console.log("onclick tn4");
+        //     console.log(document.getElementsByClassName("Ntool_button _btn_my")[0]);
+        // },1000);
+    };
+    tn4.style.margin = '0 10px 0 10px';
+
+    window.onload = ()=>{
+        if(location.href == "https://m.stock.naver.com/#"){
+            console.log("onloaded");
+            var mypage = localStorage.getItem('mypage');
+            console.log(mypage);
+            if(mypage == 1){
+                document.getElementsByClassName("Ntool_button _btn_my")[0].click();
+                // setTimeout(()=>{
+                //     document.getElementsByClassName("Ntool_button _btn_my")[0].click();
+                // },1000);
+                console.log("must be clicked");
+                localStorage.setItem('mypage', 0);
+            }
+        }
+    };
+
+    switch (window.location.host) {
+        case 'm.stock.naver.com':{
+            tn0.setAttribute('src', topNav['c0']);
+            tn1.setAttribute('src', topNav['d1']);
+            tn2.setAttribute('src', topNav['d2']);
+            tn3.setAttribute('src', topNav['d3']);
+            tn4.setAttribute('src', topNav['d4']);
+            break;
+        }
+        case 'kr.tradingview.com':{
+            tn0.setAttribute('src', topNav['d0']);
+            tn1.setAttribute('src', topNav['c1']);
+            tn2.setAttribute('src', topNav['d2']);
+            tn3.setAttribute('src', topNav['d3']);
+            tn4.setAttribute('src', topNav['d4']);
+            break;
+        }
+        case 'm.news.naver.com':{
+            tn0.setAttribute('src', topNav['d0']);
+            tn1.setAttribute('src', topNav['d1']);
+            tn2.setAttribute('src', topNav['c2']);
+            tn3.setAttribute('src', topNav['d3']);
+            tn4.setAttribute('src', topNav['d4']);
+            break;
+        }
+        case 'm.stock.naver.com':{
+            tn0.setAttribute('src', topNav['d0']);
+            tn1.setAttribute('src', topNav['d1']);
+            tn2.setAttribute('src', topNav['d2']);
+            tn3.setAttribute('src', topNav['c3']);
+            tn4.setAttribute('src', topNav['d4']);
+            break;
+        }
+        case 'm.stock.naver.com':{
+            tn0.setAttribute('src', topNav['d0']);
+            tn1.setAttribute('src', topNav['c1']);
+            tn2.setAttribute('src', topNav['d2']);
+            tn3.setAttribute('src', topNav['d3']);
+            tn4.setAttribute('src', topNav['d4']);
+            break;
+        }
+    }
 
 //Floating Button 0~2
     var floatBtn = document.createElement('div');
@@ -102,26 +183,94 @@ if(window.innerWidth < 590) {
         'z-index:5000;' +
         'opacity:0;transition:opacity 0.4s';
 
+    var floatBtn2 = document.createElement('div');
+    floatBtn2.setAttribute("id", "floating-button-2");
+    floatBtn2.style.cssText =
+        'position:fixed;\n' +
+        '\twidth:60px;\n' +
+        '\theight:60px;\n' +
+        '\tbottom:150px;\n' +
+        '\tright:5px;\n' +
+        '\tbackground-color:#0C9;\n' +
+        '\tcolor:#FFF;\n' +
+        '\tborder-radius:50px;\n' +
+        '\ttext-align:center;\n' +
+        '\tbox-shadow: 2px 2px 3px #999;' +
+        'z-index:5000;' +
+        'opacity:0;transition:opacity 0.4s';
+
     document.body.style.marginTop = '60px';
     document.body.appendChild(navBar);
     document.body.appendChild(floatBtn);
     document.body.appendChild(floatBtn1);
-    document.getElementById('stock_info_nav').appendChild(tnd0);
-    document.getElementById('stock_info_nav').appendChild(tnd1);
-    document.getElementById('stock_info_nav').appendChild(tnd2);
-    document.getElementById('stock_info_nav').appendChild(tnd3);
-    document.getElementById('stock_info_nav').appendChild(tnd4);
+    document.body.appendChild(floatBtn2);
+    document.getElementById('stock_info_nav').appendChild(tn0);
+    document.getElementById('stock_info_nav').appendChild(tn1);
+    document.getElementById('stock_info_nav').appendChild(tn2);
+    document.getElementById('stock_info_nav').appendChild(tn3);
+    document.getElementById('stock_info_nav').appendChild(tn4);
     document.getElementById('floating-button-0').appendChild(floatBtnImg);
 
-    floatBtn.addEventListener('mouseover', () => {
-        document.getElementById('floating-button-1').style.opacity = 1;
-        whale.runtime.sendMessage('badge5');
+    //네이버 주식
+    tn0.addEventListener('mouseover', () => {
+        localStorage.setItem("before", document.getElementById('tn0').src);
+        document.getElementById('tn0').src = topNav['h0'];
+    });
+    tn0.addEventListener('mouseout', () => {
+        console.log(window.location.host);
+        document.getElementById('tn0').src = localStorage.getItem('before');
     });
 
-    floatBtn.addEventListener('mouseout', () => {
-        document.getElementById('floating-button-1').style.opacity = 0;
+    //트레이딩뷰
+    tn1.addEventListener('mouseover', () => {
+        localStorage.setItem("before", document.getElementById('tn1').src);
+        document.getElementById('tn1').src = topNav['h1'];
+    });
+    tn1.addEventListener('mouseout', () => {
+        document.getElementById('tn1').src = localStorage.getItem('before');
+    });
+
+    //네이버 경제 뉴스
+    tn2.addEventListener('mouseover', () => {
+        localStorage.setItem("before", document.getElementById('tn2').src);
+        document.getElementById('tn2').src = topNav['h2'];
+    });
+    tn2.addEventListener('mouseout', () => {
+        document.getElementById('tn2').src = localStorage.getItem('before');
+    });
+
+    //즐겨찾기
+    tn3.addEventListener('mouseover', () => {
+        localStorage.setItem("before", document.getElementById('tn3').src);
+        document.getElementById('tn3').src = topNav['h3'];
+    });
+    tn3.addEventListener('mouseout', () => {
+        document.getElementById('tn3').src = localStorage.getItem('before');
+    });
+
+    //관심종목
+    tn4.addEventListener('mouseover', () => {
+        localStorage.setItem("before", document.getElementById('tn4').src);
+        document.getElementById('tn4').src = topNav['h4'];
+    });
+    tn4.addEventListener('mouseout', () => {
+        document.getElementById('tn4').src = localStorage.getItem('before');
+    });
+
+    var isOpened = false;
+    floatBtn.addEventListener('click', () => {
+        if(isOpened){
+            document.getElementById('floating-button-1').style.opacity = 0;
+            document.getElementById('floating-button-2').style.opacity = 0;
+            isOpened = false;
+        }
+        else{
+            document.getElementById('floating-button-1').style.opacity = 1;
+            document.getElementById('floating-button-2').style.opacity = 1;
+            isOpened = true;
+        }
         whale.runtime.sendMessage('badge4');
-    })
+    });
 
     if (document.title.indexOf('네이버 증권') != -1) {
         document.body.removeChild(document.getElementsByClassName("btn_top _btn_floating_top")[0]);

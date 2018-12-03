@@ -37,8 +37,7 @@
       ],
       "js" : [
         "src/js/text_selection.js",
-        "src/js/floating_nav.js",
-        "src/js/sidebar_only.js"
+        "src/js/floating_nav.js"
       ]
     }
   ],

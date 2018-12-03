@@ -78,7 +78,7 @@ createtooltip() // create tooltip by calling it ONCE per page. See "Note" below
 function showtooltip(selected, block) {
     let sel = selected.getRangeAt(0).cloneRange().getBoundingClientRect()
     let relative = document.body.parentNode.getBoundingClientRect();
-    console.log(sel)
+    //console.log(sel)
     tooltip.style.left = sel['left'] + "px"
     tooltip.style.top = (sel['bottom'] - relative.top) + "px"
     tooltip.style.opacity = 1;
