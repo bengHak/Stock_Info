@@ -1,3 +1,5 @@
+//12: 31 전까지는 멀쩡
+
 if(window.innerWidth < 590){
 
     var modalWin = document.createElement('div');
@@ -38,25 +40,74 @@ if(window.innerWidth < 590){
     var mdText = document.createElement('p');
     mdText.innerHTML += '<br><h1>Hello</h1><br>';
 
+
+    //init storage
     var setObj = (key, obj)=>{
-      return localStorage.setItem( key, JSON.stringify(obj));
+      return window.localStorage.setItem( key, JSON.stringify(obj));
     };
 
     var getObj = (key)=>{
-        return JSON.parse(localStorage.getItem(key));
+        return JSON.parse(window.localStorage.getItem(key));
     };
 
-    if(localStorage.getItem('sites') == null){
-        localStorage.setItem('sites','[]');
+    var setGlobalObj = ()=>{
+        whale.runtime.sendMessage('setItems');
+    };
+
+    var getGlobalObj = ()=>{
+        whale.runtime.sendMessage('getItems',(res)=>{
+           return JSON.parse(res);
+        });
+    };
+
+    var temp = Promise(getGlobalObj());
+    console.log(temp);
+    // var wSetObj = (key, obj)=>{
+    //     return whale.storage.local.set({
+    //         key: JSON.stringify(obj)
+    //     });
+    // };
+    //
+    // var wGetObj = (key)=>{
+    //     whale.storage.local.get(key, (res)=>{
+    //         return JSON.parse(res);
+    //     });
+    // };
+
+    if(window.localStorage.getItem('sites') == null){
+        window.localStorage.setItem('sites','[]');
     }
 
-    var mdList = document.createElement('ul');
-    var listObj = getObj('sites');
-    for(var i=0; i<listObj.length;i++){
-        mdList.innerHTML += '<br>' + listObj[i].siteName +
-            '<br>' + listObj[i].siteUrl + '<br>';
+
+    // function isEmpty(myObject) {
+    //     for(var key in myObject) {
+    //         if (myObject.hasOwnProperty(key)) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
+
+    // var initialSiteList = wGetObj('sites');
+    //
+    // if(initialSiteList.toString() == '{}'){
+    //     wSetObj('sites','[]');
+    // }
+    // console.log(initialSiteList);
+
+
+    var mdList = document.createElement('table');
+
+    function drawList() {
+        mdList.innerHTML = '<tr>';
+        var listObj = getObj('sites');
+        for (var i = 0; i < listObj.length; i++) {
+            mdList.innerHTML += '<br>' + listObj[i].siteName +
+                '<br> <a href="' + listObj[i].siteUrl + '">' + listObj[i].siteUrl + '</a> <br></tr>';
+        }
     }
-    mdList.innerHTML += '<hr><br>';
+
+    drawList();
 
     function findObjectByKey(array, value) {
         for (var i = 0; i < array.length; i++) {
@@ -69,19 +120,40 @@ if(window.innerWidth < 590){
 
     function saveSite(siteName, siteUrl) {
         var tempObj = getObj('sites');
+        // var wObj = wGetObj('sites');
+
+        console.log('saveSite');
+        console.log(tempObj);
+        console.log(wObj);
 
         var dupl = findObjectByKey(tempObj, siteUrl);
         console.log(dupl);
-        if(dupl != null){
+        if(dupl != null) {
             alert('이미 등록된 사이트입니다.');
             return;
         }
 
+        modalWin.removeChild(mdContent);
+        // wObj.push({
+        //     'siteName': siteName,
+        //     'siteUrl': siteUrl
+        // });
         tempObj.push({
             'siteName': siteName,
             'siteUrl': siteUrl
         });
+
         setObj('sites',tempObj);
+        // wSetObj('sites',wObj);
+
+        console.log(tempObj);
+        // console.log(wObj);
+
+        setTimeout(()=>{
+            drawList();
+            modalWin.appendChild(mdContent);
+        },100);
+
         printStorage();
     }
 
@@ -114,13 +186,13 @@ if(window.innerWidth < 590){
     // });
 
     function printStorage() {
-        for (var i = 0; i < localStorage.length; i++) {
-            console.log(localStorage.key(i) + "=[" + localStorage.getItem(localStorage.key(i)) + "]");
+        for (var i = 0; i < window.localStorage.length; i++) {
+            console.log(window.localStorage.key(i) + "=[" + window.localStorage.getItem(window.localStorage.key(i)) + "]");
         }
     }
 
-    if(localStorage.getItem('sites') == null){
-        localStorage.setItem('sites','[]');
+    if(window.localStorage.getItem('sites') == null){
+        window.localStorage.setItem('sites','[]');
     }
 
     var mdInputSubmit = document.createElement('input');

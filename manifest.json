@@ -27,6 +27,7 @@
   "content_scripts":[
     {
       "matches": [
+        "https://*/*",
         "https://news.naver.com/*",
         "https://m.news.naver.com/*",
         "https://m.stock.naver.com/*",
@@ -44,6 +45,7 @@
 
   "permissions": [
     "notifications",
-    "tabs"
+    "tabs",
+    "storage"
   ]
 }

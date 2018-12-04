@@ -1,4 +1,5 @@
 whale.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
+    var storageJson = '[]';
     var ws = whale.sidebarAction;
     switch (msg) {
         case 'showNaverFinance':{
@@ -38,21 +39,17 @@ whale.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
             ws.setTitle({title: "변경 후"});
             break;
         }
-        case 'hide':{
+        case 'hide': {
             ws.hide();
             break;
         }
-        case 'docking':{
-            //ws.dock(sender.tab.windowId);
-            sendResponse(sender);
+        case 'getItems':{
+            sendResponse(storageJson);
+            break;
+        }
+        case 'setItems':{
+            storageJson = JSON.stringify(window.localStorage.getItem('sites'));
+            break;
         }
     }
 });
-
-//
-// var title = whale.sidebarAction.getTitle();
-// console.log(title);
-// console.log("hello~");
-// title.then((text)=>{
-//     console.log(text);
-// });

@@ -37,7 +37,7 @@ if(window.innerWidth < 590) {
     navBar.style.right = 0;
     navBar.style.left = 0;
     navBar.style.backgroundColor = '#081245';
-    navBar.style.zIndex = 5000;
+    navBar.style.zIndex = 20000;
     navBar.style.display = 'block';
     navBar.style.padding = '6px 6px 2px 6px';
     navBar.style.textAlign = 'center';
@@ -152,7 +152,7 @@ if(window.innerWidth < 590) {
         '\twidth:45px;\n' +
         '\theight:45px;\n' +
         '\tbottom:10px;\n' +
-        '\tright:5px;\n' +
+        '\tright:10px;\n' +
         '\tcolor:#FFF;\n' +
         '\tborder-radius:50%;\n' +
         '\ttext-align:center;\n' +
@@ -171,7 +171,7 @@ if(window.innerWidth < 590) {
         '\twidth:45px;\n' +
         '\theight:45px;\n' +
         '\tbottom:65px;\n' +
-        '\tright:5px;\n' +
+        '\tright:10px;\n' +
         '\tcolor:#FFF;\n' +
         '\tborder-radius:50%;\n' +
         '\ttext-align:center;\n' +
@@ -196,7 +196,7 @@ if(window.innerWidth < 590) {
         '\twidth:45px;\n' +
         '\theight:45px;\n' +
         '\tbottom:120px;\n' +
-        '\tright:5px;\n' +
+        '\tright:10px;\n' +
         '\tcolor:#FFF;\n' +
         '\tborder-radius:50%;\n' +
         '\ttext-align:center;\n' +
@@ -287,6 +287,21 @@ if(window.innerWidth < 590) {
                 document.getElementById('floating-button-1').style.display = 'none';
                 document.getElementById('floating-button-2').style.display = 'none';
             }, 300);
+            whale.storage.local.set({'hello':'value'});
+            whale.storage.local.set({'hello1':'value'});
+            whale.storage.local.get('hello', (res)=>{
+                console.log(res);
+            });
+            var tmp;
+            whale.storage.local.get('noen',(res)=>{
+                tmp = res;
+            });
+            //이건 출력 안됨
+            console.log(tmp + 'asdgkahjs');
+            setTimeout(()=>{
+                console.log(tmp);
+            }, 100);
+
             isOpened = false;
         }
         else{
@@ -296,6 +311,8 @@ if(window.innerWidth < 590) {
                 document.getElementById('floating-button-1').style.opacity = 1;
                 document.getElementById('floating-button-2').style.opacity = 1;
             },300);
+
+
             isOpened = true;
         }
         whale.runtime.sendMessage('badge4');
