@@ -5,11 +5,11 @@ if(window.innerWidth < 590) {
     var ticking = false;
 
     var topNav = {
-        'd0': "https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c024a006d535e6b4df3b54d/bd1c858b3be4f81cfc9057860054845d/tnd1.png",
-        'd1': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c024a006d535e6b4df3b54d/197fe28ef2e0b8013a2ceb85e406cd88/tnd2.png',
-        'd2': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c024a006d535e6b4df3b54d/56f0f4c72765c3228ea77019fbff8b4a/tnd3.png',
-        'd3': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c024a006d535e6b4df3b54d/b338d81d39f70bd56f3c083f11561b23/tnd4.png',
-        'd4': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c024a006d535e6b4df3b54d/9522064c3e0a6de0afb9390508e93ec2/tnd5.png',
+        'd0': "https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c050b5b1e9bd17d49642548/b8a43bf52a9b31281e6b6eaeb986fb1f/tnd1.png",
+        'd1': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c050b5b1e9bd17d49642548/64ce9c61eb3fedde3935b93b44cf142e/tnd2.png',
+        'd2': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c050b5b1e9bd17d49642548/3503d1993dd32daf3ebdc21affeba3e5/tnd3.png',
+        'd3': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c050b5b1e9bd17d49642548/8af00676c736af05af20cf5bfb7fbe73/tnd4.png',
+        'd4': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c050b5b1e9bd17d49642548/ea8880b02eaff4dbdbca2799b36f17b1/tnd5.png',
         'h0': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249f31e19688fcf22284e/3b46a9ade36769e83b59472e94300717/tnh1.png',
         'h1': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249f31e19688fcf22284e/9c9ba0439c0fa39396f70c4e663ae0e7/tnh2.png',
         'h2': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249f31e19688fcf22284e/fb5b27e8969d49a0429c3cbd592c9fa1/tnh3.png',

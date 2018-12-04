@@ -54,14 +54,21 @@ if(window.innerWidth < 590){
         whale.runtime.sendMessage('setItems');
     };
 
-    var getGlobalObj = ()=>{
-        whale.runtime.sendMessage('getItems',(res)=>{
-           return JSON.parse(res);
+    var getGlobalObj =()=>{
+        return new Promise((resolve)=>{
+            whale.runtime.sendMessage('getItems',(res)=>{
+                resolve(JSON.parse(res));
+            });
         });
     };
 
-    var temp = Promise(getGlobalObj());
-    console.log(temp);
+    var initialArr = getGlobalObj().then((res) => {
+        console.log(res);
+        return res;
+    });
+
+    console.log(initialArr);
+
     // var wSetObj = (key, obj)=>{
     //     return whale.storage.local.set({
     //         key: JSON.stringify(obj)
@@ -102,10 +109,21 @@ if(window.innerWidth < 590){
         mdList.innerHTML = '<tr>';
         var listObj = getObj('sites');
         for (var i = 0; i < listObj.length; i++) {
-            mdList.innerHTML += '<br>' + listObj[i].siteName +
-                '<br> <a href="' + listObj[i].siteUrl + '">' + listObj[i].siteUrl + '</a> <br></tr>';
+            mdList.innerHTML += '<br>' +
+                listObj[i].siteName +
+                '<br> <a href="' +
+                listObj[i].siteUrl +
+                '">' +
+                listObj[i].siteUrl +
+                '</a>' +
+                '<span id="deleteRow" style="font-weight: bold; font-size: 13px;"> X</span>' +
+                ' <br></tr>';
         }
     }
+
+    document.getElementById('deleteRow').addEventListener('click',()=>{
+        //행 삭제
+    });
 
     drawList();
 
@@ -124,7 +142,6 @@ if(window.innerWidth < 590){
 
         console.log('saveSite');
         console.log(tempObj);
-        console.log(wObj);
 
         var dupl = findObjectByKey(tempObj, siteUrl);
         console.log(dupl);
@@ -134,10 +151,6 @@ if(window.innerWidth < 590){
         }
 
         modalWin.removeChild(mdContent);
-        // wObj.push({
-        //     'siteName': siteName,
-        //     'siteUrl': siteUrl
-        // });
         tempObj.push({
             'siteName': siteName,
             'siteUrl': siteUrl
