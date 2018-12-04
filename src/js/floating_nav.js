@@ -77,63 +77,19 @@ if(window.innerWidth < 590) {
     tn3.setAttribute('width', '40px');
     tn3.style.margin = '0 15px 0 15px';
     tn3.onclick = ()=>{
-        modalWin.style.display = 'block';
+        document.getElementById('modalWin').style.display = 'block';
     };
-
-    var modalWin = document.createElement('div');
-    modalWin.style.cssText = '' +
-        'display: none; /* Hidden by default */\n' +
-        '    position: fixed; /* Stay in place */\n' +
-        '    z-index: 5001; /* Sit on top */\n' +
-        '    left: 0;\n' +
-        '    top: 0;\n' +
-        '    width: 100%; /* Full width */\n' +
-        '    height: 100%; /* Full height */\n' +
-        '    overflow: auto; /* Enable scroll if needed */\n' +
-        '    background-color: rgb(0,0,0); /* Fallback color */\n' +
-        '    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */';
-
-    window.onclick = function(event) {
-        if (event.target == modalWin) {
-            modalWin.style.display = "none";
-        }
-    };
-
-    var mdContent = document.createElement('div');
-    mdContent.setAttribute('class', 'modal-content');
-    mdContent.style.cssText = 'background-color: #fefefe;\n' +
-        '    margin: 15% auto; /* 15% from the top and centered */\n' +
-        '    padding: 20px;\n' +
-        '    border: 1px solid #888;\n' +
-        '    width: 80%; /* Could be more or less, depending on screen size */';
-    var mdClose = document.createElement('span');
-    mdClose.setAttribute('class','close');
-    mdClose.text = '&times;';
-    mdClose.style.cssText = 'color: #aaa;\n' +
-        '    float: right;\n' +
-        '    font-size: 28px;\n' +
-        '    font-weight: bold;';
-
-    var mdText = document.createElement('p');
-    mdText.text = 'Some text in the Modal..';
-
-    mdContent.appendChild(mdText);
-    mdContent.appendChild(mdClose);
-    modalWin.appendChild(mdContent);
-    document.body.appendChild(modalWin);
 
     var tn4 = document.createElement('img');
     tn4.setAttribute('id','tn4');
     // tn4.setAttribute('src', topNav['d4']);
     tn4.setAttribute('width', '40px');
     tn4.onclick=()=>{
-        localStorage.setItem("mypage", 1);
         if(window.location.host != 'm.stock.naver.com'){
             location.href = "https://m.stock.naver.com/#";
         }
         else{
             document.getElementsByClassName("Ntool_button _btn_my")[0].click();
-            localStorage.setItem("mypage", 0);
         }
     };
     tn4.style.margin = '0 15px 0 15px';
@@ -149,21 +105,11 @@ if(window.innerWidth < 590) {
 
     switch (window.location.host) {
         case 'm.stock.naver.com':{
-            if(localStorage.getItem('mypage') == 1){
-                tn0.setAttribute('src', topNav['d0']);
-                tn1.setAttribute('src', topNav['d1']);
-                tn2.setAttribute('src', topNav['d2']);
-                tn3.setAttribute('src', topNav['d3']);
-                tn4.setAttribute('src', topNav['c4']);
-                localStorage.mypage = 0;
-            }
-            else {
-                tn0.setAttribute('src', topNav['c0']);
-                tn1.setAttribute('src', topNav['d1']);
-                tn2.setAttribute('src', topNav['d2']);
-                tn3.setAttribute('src', topNav['d3']);
-                tn4.setAttribute('src', topNav['d4']);
-            }
+            tn0.setAttribute('src', topNav['c0']);
+            tn1.setAttribute('src', topNav['d1']);
+            tn2.setAttribute('src', topNav['d2']);
+            tn3.setAttribute('src', topNav['d3']);
+            tn4.setAttribute('src', topNav['d4']);
             break;
         }
         case 'kr.tradingview.com':{
@@ -190,14 +136,21 @@ if(window.innerWidth < 590) {
             tn4.setAttribute('src', topNav['d4']);
             break;
         }
+        default:{
+            tn0.setAttribute('src', topNav['d0']);
+            tn1.setAttribute('src', topNav['d1']);
+            tn2.setAttribute('src', topNav['d2']);
+            tn3.setAttribute('src', topNav['d3']);
+            tn4.setAttribute('src', topNav['d4']);
+        }
     }
 
 //Floating Button 0~2
     var floatBtn = document.createElement('div');
     floatBtn.setAttribute("id", "floating-button-0");
     floatBtn.style.cssText = 'position:fixed;\n' +
-        '\twidth:60px;\n' +
-        '\theight:60px;\n' +
+        '\twidth:45px;\n' +
+        '\theight:45px;\n' +
         '\tbottom:10px;\n' +
         '\tright:5px;\n' +
         '\tcolor:#FFF;\n' +
@@ -208,40 +161,44 @@ if(window.innerWidth < 590) {
     var fltImg0 = document.createElement('img');
     fltImg0.setAttribute('id','fltBtn0');
     fltImg0.setAttribute('src', fltBtn.bd0);
-    fltImg0.setAttribute('width', '60px');
-//fltImg0.style.opacity = 1;
+    fltImg0.setAttribute('width', '45px');
+    fltImg0.setAttribute('height', '45px');
 
     var floatBtn1 = document.createElement('div');
     floatBtn1.setAttribute("id", "floating-button-1");
     floatBtn1.style.cssText =
         'position:fixed;\n' +
-        '\twidth:60px;\n' +
-        '\theight:60px;\n' +
-        '\tbottom:80px;\n' +
+        '\twidth:45px;\n' +
+        '\theight:45px;\n' +
+        '\tbottom:65px;\n' +
         '\tright:5px;\n' +
         '\tcolor:#FFF;\n' +
         '\tborder-radius:50%;\n' +
         '\ttext-align:center;\n' +
-        '\tbox-shadow: 0px 0px 20px #000;' +
+        '\tbox-shadow: 2px 2px 3px #999;' +
         'z-index:5000;' +
         'display:none;'+
         'opacity:0;transition:opacity 0.4s';
     var fltImg1 = document.createElement('img');
     fltImg1.setAttribute('id', 'fltBtn1');
     fltImg1.setAttribute('src', fltBtn.b1);
-    fltImg1.setAttribute('width', '60px');
-    fltImg1.setAttribute('height', '60px');
+    fltImg1.setAttribute('width', '45px');
+    fltImg1.setAttribute('height', '45px');
+    fltImg1.onclick = () => {
+        console.log("Whale show browser");
+        whale.runtime.sendMessage('showNaverFinance');
+    };
 
     var floatBtn2 = document.createElement('div');
     floatBtn2.setAttribute("id", "floating-button-2");
     floatBtn2.style.cssText =
         'position:fixed;\n' +
-        '\twidth:60px;\n' +
-        '\theight:60px;\n' +
-        '\tbottom:150px;\n' +
+        '\twidth:45px;\n' +
+        '\theight:45px;\n' +
+        '\tbottom:120px;\n' +
         '\tright:5px;\n' +
         '\tcolor:#FFF;\n' +
-        '\tborder-radius:50px;\n' +
+        '\tborder-radius:50%;\n' +
         '\ttext-align:center;\n' +
         '\tbox-shadow: 2px 2px 3px #999;' +
         'z-index:5000;' +
@@ -250,10 +207,15 @@ if(window.innerWidth < 590) {
     var fltImg2 = document.createElement('img');
     fltImg2.setAttribute('id', 'fltBtn2');
     fltImg2.setAttribute('src', fltBtn.b2);
-    fltImg2.setAttribute('width', '60px');
-    fltImg2.setAttribute('height', '60px');
+    fltImg2.setAttribute('width', '45px');
+    fltImg2.setAttribute('height', '45px');
+    fltImg2.onclick = ()=>{
+        whale.runtime.sendMessage('showTV');
+    };
 
-    document.body.style.marginTop = '60px';
+    if(location.host != 'm.news.naver.com'){
+        document.body.style.marginTop = '60px';
+    }
     document.body.appendChild(navBar);
     document.body.appendChild(floatBtn);
     document.body.appendChild(floatBtn1);
@@ -337,11 +299,6 @@ if(window.innerWidth < 590) {
             isOpened = true;
         }
         whale.runtime.sendMessage('badge4');
-    });
-
-    document.getElementsByClassName("btn_close _btn_my_close")[0].addEventListener('click',()=>{
-        tn0.setAttribute('src', topNav['c0']);
-        tn4.setAttribute('src', topNav['d4']);
     });
 
     if (document.title.indexOf('네이버 증권') != -1) {

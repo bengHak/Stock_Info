@@ -1,6 +1,18 @@
 whale.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
     var ws = whale.sidebarAction;
     switch (msg) {
+        case 'showNaverFinance':{
+            whale.tabs.create({
+                url:'https:/finance.naver.com'
+            });
+            break;
+        }
+        case 'showTV':{
+            whale.tabs.create({
+                url:'https://kr.tradingview.com/'
+            });
+            break;
+        }
         case 'showIndex': {
             ws.show({
                 url:'https://m.stock.naver.com',
