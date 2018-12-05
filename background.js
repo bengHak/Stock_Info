@@ -1,12 +1,24 @@
+var storageJson = '[]';
+
 whale.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
-    var storageJson = '[]';
     var ws = whale.sidebarAction;
     switch (msg) {
         case 'showNaverFinance':{
-            whale.tabs.create({
-                url:'https:/finance.naver.com'
-            });
-            break;
+            try{
+                console.log(localStorage);
+                whale.tabs.create({
+                    url: "https://www.naver.com"
+                });
+                ws.setTitle({title: "showNaverFinance"});
+                break;
+            }
+            catch (e) {
+                console.log(e);
+                whale.tabs.create({
+                    url: "https://instagram.com"
+                });
+                break;
+            }
         }
         case 'showTV':{
             whale.tabs.create({

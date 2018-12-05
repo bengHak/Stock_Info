@@ -1,20 +1,47 @@
 // console.log(window.innerWidth);
 if(window.innerWidth < 590) {
 
+    console.log('웨일 스토리지 시작');
+    whale.storage.local.set({'hello':'value'});
+    whale.storage.local.set({'hello1':'value'});
+
+    var tmp2;
+    var tmp;
+
+    whale.storage.local.get('hello', (res)=>{
+        console.log(res + ' 비동기 해결 됨.');
+        tmp2 = res;
+    });
+
+    whale.storage.local.get('noen',(res)=>{
+        tmp = res;
+    });
+
+    console.log(tmp + ' 비동기 해결 안됨.');
+    console.log(tmp2 + ' tmp2');
+
+    setTimeout(()=>{
+        console.log(tmp + ' delay 0.1s');
+        console.log(tmp2 + ' delay 0.1s tmp2');
+    }, 100);
+
+    console.log('웨일 스토리지 시작 끝');
+
+
     var last_known_scroll_position = 0;
     var ticking = false;
 
     var topNav = {
-        'd0': "https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c050b5b1e9bd17d49642548/b8a43bf52a9b31281e6b6eaeb986fb1f/tnd1.png",
+        'd0': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c050b5b1e9bd17d49642548/b8a43bf52a9b31281e6b6eaeb986fb1f/tnd1.png',
         'd1': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c050b5b1e9bd17d49642548/64ce9c61eb3fedde3935b93b44cf142e/tnd2.png',
         'd2': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c050b5b1e9bd17d49642548/3503d1993dd32daf3ebdc21affeba3e5/tnd3.png',
         'd3': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c050b5b1e9bd17d49642548/8af00676c736af05af20cf5bfb7fbe73/tnd4.png',
         'd4': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c050b5b1e9bd17d49642548/ea8880b02eaff4dbdbca2799b36f17b1/tnd5.png',
-        'h0': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249f31e19688fcf22284e/3b46a9ade36769e83b59472e94300717/tnh1.png',
-        'h1': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249f31e19688fcf22284e/9c9ba0439c0fa39396f70c4e663ae0e7/tnh2.png',
-        'h2': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249f31e19688fcf22284e/fb5b27e8969d49a0429c3cbd592c9fa1/tnh3.png',
-        'h3': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249f31e19688fcf22284e/a782f06b3d9453a73c9d49352a975df1/tnh4.png',
-        'h4': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249f31e19688fcf22284e/f70948640a6f6d408b9bec378f41413e/tnh5.png',
+        'h0': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c051989163ada58556fc4d0/a17f1a2269a6c995a2436da18d952acf/tnh1.png',
+        'h1': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c051989163ada58556fc4d0/cf15a0cbddb1112a0ee23e2fe7cfd124/tnh2.png',
+        'h2': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c051989163ada58556fc4d0/77b5938ee770564e442e53f927af7745/tnh3.png',
+        'h3': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c051989163ada58556fc4d0/04ffb34345fa52367454274e0bdf09ff/tnh4.png',
+        'h4': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c051989163ada58556fc4d0/05745dca15961c54f8ec9eeedc8edbab/tnh5.png',
         'c0': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249ecd9ed955561de79b2/e04c17a9ecc2e8f1b9da6a235f8adbe8/tnc1.png',
         'c1': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249ecd9ed955561de79b2/5feb53c1ba801286e28ca8464c255ebc/tnc2.png',
         'c2': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249ecd9ed955561de79b2/7b076c5131dcab524cd257349402bf2f/tnc3.png',
@@ -41,8 +68,6 @@ if(window.innerWidth < 590) {
     navBar.style.display = 'block';
     navBar.style.padding = '6px 6px 2px 6px';
     navBar.style.textAlign = 'center';
-
-    console.log(sessionStorage.getItem('clicked'));
 
     var tn0 = document.createElement('img');
     tn0.setAttribute('id','tn0');
@@ -287,21 +312,6 @@ if(window.innerWidth < 590) {
                 document.getElementById('floating-button-1').style.display = 'none';
                 document.getElementById('floating-button-2').style.display = 'none';
             }, 300);
-            whale.storage.local.set({'hello':'value'});
-            whale.storage.local.set({'hello1':'value'});
-            whale.storage.local.get('hello', (res)=>{
-                console.log(res);
-            });
-            var tmp;
-            whale.storage.local.get('noen',(res)=>{
-                tmp = res;
-            });
-            //이건 출력 안됨
-            console.log(tmp + 'asdgkahjs');
-            setTimeout(()=>{
-                console.log(tmp);
-            }, 100);
-
             isOpened = false;
         }
         else{
@@ -315,7 +325,6 @@ if(window.innerWidth < 590) {
 
             isOpened = true;
         }
-        whale.runtime.sendMessage('badge4');
     });
 
     if (document.title.indexOf('네이버 증권') != -1) {

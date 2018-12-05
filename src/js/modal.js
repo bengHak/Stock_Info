@@ -32,7 +32,7 @@ if(window.innerWidth < 590){
 
     var mdClose = document.createElement('span');
     mdClose.style.cssText = 'color:#aaa; float:right; font-size: 28px; font-weight: bold;';
-    mdClose.innerHTML = '&times;'
+    mdClose.innerHTML = '&times;';
     mdClose.onclick = ()=>{
       modalWin.style.display = 'none';
     };
@@ -116,16 +116,17 @@ if(window.innerWidth < 590){
                 '">' +
                 listObj[i].siteUrl +
                 '</a>' +
-                '<span id="deleteRow" style="font-weight: bold; font-size: 13px;"> X</span>' +
+                '<span onclick="" id="deleteRow" style="font-weight: bold; font-size: 13px;"> X</span>' +
                 ' <br></tr>';
         }
+        // document.getElementById('deleteRow').onclick = ()=>{
+        //     console.log(this);
+        // };
     }
 
-    document.getElementById('deleteRow').addEventListener('click',()=>{
-        //행 삭제
-    });
-
     drawList();
+
+
 
     function findObjectByKey(array, value) {
         for (var i = 0; i < array.length; i++) {
