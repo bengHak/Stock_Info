@@ -1,33 +1,6 @@
 // console.log(window.innerWidth);
+let sidebarOpened;
 if(window.innerWidth < 590) {
-
-    console.log('웨일 스토리지 시작');
-    whale.storage.local.set({'hello':'value'});
-    whale.storage.local.set({'hello1':'value'});
-
-    var tmp2;
-    var tmp;
-
-    whale.storage.local.get('hello', (res)=>{
-        console.log(res + ' 비동기 해결 됨.');
-        tmp2 = res;
-    });
-
-    whale.storage.local.get('noen',(res)=>{
-        tmp = res;
-    });
-
-    console.log(tmp + ' 비동기 해결 안됨.');
-    console.log(tmp2 + ' tmp2');
-
-    setTimeout(()=>{
-        console.log(tmp + ' delay 0.1s');
-        console.log(tmp2 + ' delay 0.1s tmp2');
-    }, 100);
-
-    console.log('웨일 스토리지 시작 끝');
-
-
     var last_known_scroll_position = 0;
     var ticking = false;
 
@@ -49,11 +22,14 @@ if(window.innerWidth < 590) {
         'c4': 'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0249ecd9ed955561de79b2/d552f0b5659d0bc653b7e26b11892558/tnc5.png'
     };
 
+    //착시현상 찾았따 신난다~~!!!
     var fltBtn = {
-        "bd0":"https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0258b29901902416b02492/6ca650313b59736591f7ec0d613b4d46/floatingBtn0.png",
-        "bc0":"https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0258b29901902416b02492/b8169d08bc305ac549ab7e9460411f8d/floatingBtn0-1.png",
-        'b1':'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0258b29901902416b02492/6a257301ae16d95f1a0d26bf69c6405d/floatingBtn1.png',
-        'b2':'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c0258b29901902416b02492/e49e85067277b30bd99a00885a1e66ac/floatingBtn3.png'
+        "bd0":"https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c07c6b29831bb5cf83e26ce/6de38f316559de9483a5a469897cf39d/floatingBtn0.png",
+        // "bc0":"https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c07c6b29831bb5cf83e26ce/da26ddeb4a5a3d52f5ec4893ad334c21/floatingBtn0-1.png",
+        // 'bc0':'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c07c6b29831bb5cf83e26ce/3db060853126ca9e5a0fcde0b860eb43/floatingBtn0-2.png',
+        'bc0':'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c07c6b29831bb5cf83e26ce/351219cf15bdb25c3974a0dddd09ddb9/floatingBtn0-3.png',
+        'b1':'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c07c6b29831bb5cf83e26ce/1a5a590c88effa5bb4ef0542c058d5f1/floatingBtn1.png',
+        'b2':'https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c07c6b29831bb5cf83e26ce/2aabd074df503acc1d753bf644485695/floatingBtn3.png'
     };
 
     var navBar = document.createElement('div');
@@ -210,7 +186,6 @@ if(window.innerWidth < 590) {
     fltImg1.setAttribute('width', '45px');
     fltImg1.setAttribute('height', '45px');
     fltImg1.onclick = () => {
-        console.log("Whale show browser");
         whale.runtime.sendMessage('showNaverFinance');
     };
 
@@ -241,6 +216,7 @@ if(window.innerWidth < 590) {
     if(location.host != 'm.news.naver.com'){
         document.body.style.marginTop = '60px';
     }
+
     document.body.appendChild(navBar);
     document.body.appendChild(floatBtn);
     document.body.appendChild(floatBtn1);
@@ -315,6 +291,7 @@ if(window.innerWidth < 590) {
             isOpened = false;
         }
         else{
+            document.getElementById('fltBtn0').src = fltBtn.bc0;
             document.getElementById('floating-button-1').style.display = 'block';
             document.getElementById('floating-button-2').style.display = 'block';
             setTimeout(()=>{
@@ -322,10 +299,15 @@ if(window.innerWidth < 590) {
                 document.getElementById('floating-button-2').style.opacity = 1;
             },300);
 
-
             isOpened = true;
         }
     });
+
+    document.addEventListener('DOMContentLoaded',()=>{
+        document.getElementsByClassName('_second')[0].children[1].onchange = ()=>{
+            console.log('changed');
+        }
+    })
 
     if (document.title.indexOf('네이버 증권') != -1) {
         document.body.removeChild(document.getElementsByClassName("btn_top _btn_floating_top")[0]);

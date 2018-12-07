@@ -1,5 +1,5 @@
 {
-   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAufrspGt5rcFRAZ0aME5JT/3G6w3NYhKzqODxzla+dNfEj6PTfclp8ci6IVOG0wOKXtRrCz5Zk+caphxYYIraILtEir4DNKxApfUAM60MdKJH1RztWyDIgOwEpI+diMB5UbJ5nqyAmpQxg2eqdx+12ocVh/JNeXVjDC5WcncD4xho9iR1eerkB9FQiVqFEdm/3+rfvMIjPP23wz74vqTH7lG3m17IhgXfu9qkzDX8mc6B9hw/PC5PbTCk1nYICQ7DxRH3J8XLHjRcU+dbQ90Mk4gMJlvJa8O6zx8YMneI7FQHQUHVAOn+JG0xa+xrqxTZUwGDY78v/JAeAOucT/6jJwIDAQAB",
+   //"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAufrspGt5rcFRAZ0aME5JT/3G6w3NYhKzqODxzla+dNfEj6PTfclp8ci6IVOG0wOKXtRrCz5Zk+caphxYYIraILtEir4DNKxApfUAM60MdKJH1RztWyDIgOwEpI+diMB5UbJ5nqyAmpQxg2eqdx+12ocVh/JNeXVjDC5WcncD4xho9iR1eerkB9FQiVqFEdm/3+rfvMIjPP23wz74vqTH7lG3m17IhgXfu9qkzDX8mc6B9hw/PC5PbTCk1nYICQ7DxRH3J8XLHjRcU+dbQ90Mk4gMJlvJa8O6zx8YMneI7FQHQUHVAOn+JG0xa+xrqxTZUwGDY78v/JAeAOucT/6jJwIDAQAB",
    "manifest_version": 2,
    "name": "유튜브 뮤직",
    "sidebar_action": {
@@ -11,7 +11,7 @@
       "mobile_user_agent": false,
       "use_navigation_bar": true
    },
-   "update_url": "https://store.whale.naver.com/update/whx",
+//   "update_url": "https://store.whale.naver.com/update/whx",
    "version": "1.0.0",
    "whale_extension": true
 }

@@ -64,30 +64,33 @@ function createtooltip() { // call this function ONCE at the end of page to crea
     tooltip.style.cssText =
         'position:absolute; background:black; color:white; padding:4px;z-index:10000;'
         + 'border-radius:2px; font-size:12px;box-shadow:3px 3px 3px rgba(0,0,0,.4);'
-        + 'opacity:0;transition:opacity 0.4s'
+        + 'opacity:0;transition:opacity 0.4s';
     tooltip.innerHTML = '여기에 버튼';
-    // tooltip.setAttribute('href', 'https://m.naver.com');
-    // tooltip.setAttribute('target', '_blank');
     document.body.appendChild(tooltip);
 }
 
-let tooltip
+let tooltip;
+let copied;
 createtooltip() // create tooltip by calling it ONCE per page. See "Note" below
 
 //드래그 후 생성되는 버튼 위치 정의
 function showtooltip(selected, block) {
     let sel = selected.getRangeAt(0).cloneRange().getBoundingClientRect()
     let relative = document.body.parentNode.getBoundingClientRect();
-    //console.log(sel)
+    copied = selected.toString();
     tooltip.style.left = sel['left'] + "px"
     tooltip.style.top = (sel['bottom'] - relative.top) + "px"
     tooltip.style.opacity = 1;
 }
 
-tooltip.addEventListener('click',(tab)=>{
+tooltip.addEventListener('click',()=>{
     console.log('Clicked');
-    console.log(tab);
-    whale.runtime.sendMessage('docking', res=>{
+    console.log(copied);
+    whale.runtime.sendMessage({
+        'keyword':'qucikSearch',
+        'stock': copied
+    }, res=>{
         console.log(res);
     });
+    console.log(location.href);
 });

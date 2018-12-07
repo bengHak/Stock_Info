@@ -50,25 +50,6 @@ if(window.innerWidth < 590){
         return JSON.parse(window.localStorage.getItem(key));
     };
 
-    var setGlobalObj = ()=>{
-        whale.runtime.sendMessage('setItems');
-    };
-
-    var getGlobalObj =()=>{
-        return new Promise((resolve)=>{
-            whale.runtime.sendMessage('getItems',(res)=>{
-                resolve(JSON.parse(res));
-            });
-        });
-    };
-
-    var initialArr = getGlobalObj().then((res) => {
-        console.log(res);
-        return res;
-    });
-
-    console.log(initialArr);
-
     // var wSetObj = (key, obj)=>{
     //     return whale.storage.local.set({
     //         key: JSON.stringify(obj)
@@ -119,14 +100,9 @@ if(window.innerWidth < 590){
                 '<span onclick="" id="deleteRow" style="font-weight: bold; font-size: 13px;"> X</span>' +
                 ' <br></tr>';
         }
-        // document.getElementById('deleteRow').onclick = ()=>{
-        //     console.log(this);
-        // };
     }
 
     drawList();
-
-
 
     function findObjectByKey(array, value) {
         for (var i = 0; i < array.length; i++) {
@@ -139,7 +115,6 @@ if(window.innerWidth < 590){
 
     function saveSite(siteName, siteUrl) {
         var tempObj = getObj('sites');
-        // var wObj = wGetObj('sites');
 
         console.log('saveSite');
         console.log(tempObj);
@@ -158,10 +133,8 @@ if(window.innerWidth < 590){
         });
 
         setObj('sites',tempObj);
-        // wSetObj('sites',wObj);
 
         console.log(tempObj);
-        // console.log(wObj);
 
         setTimeout(()=>{
             drawList();
