@@ -1,5 +1,5 @@
 var storageJson = window.localStorage;
-let sidebarOpened;
+let sidebarOpened = false;
 
 try{
     storageJson.sites = '[]';
@@ -19,7 +19,19 @@ console.log(temp);
 temp.push({'다음': 'https://daum.net'});
 storageJson.sites = JSON.stringify(temp);
 
+//port
+whale.runtime.onConnect.addListener(port => {
+    console.log('send by connect');
+    if(sidebarOpened === true){
+        console.log(sidebarOpened + ' sidebar is opened');
+        port.postMessage({'sidebar':true});
+    }
+    else
+        console.log('closed');
 
+});
+
+//확장 앱 열렸을 때 실행되는 함수
 whale.sidebarAction.onClicked.addListener(res=>{
     console.log(res);
     sidebarOpened = res.opened;
@@ -91,6 +103,10 @@ whale.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
             }
             case 'getItems':{
                 sendResponse(storageJson);
+                break;
+            }
+            case 'closed':{
+                sidebarOpened = false;
                 break;
             }
         }

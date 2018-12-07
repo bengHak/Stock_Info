@@ -1,6 +1,28 @@
 // console.log(window.innerWidth);
-let sidebarOpened;
-if(window.innerWidth < 590) {
+let sidebarOpened = false;
+
+const port = whale.runtime.connect({name: `greetings`});
+
+port.onMessage.addListener(message => {
+    console.log(message.sidebar);
+    appendBtn();
+});
+
+document.addEventListener(`visibilitychange`, function () {
+    if (document.visibilityState === `visible`) {
+        // 사이드바가 열렸을 때
+        sidebarOpened = true;
+        console.log(sidebarOpened);
+    } else {
+        // 사이드바가 닫혔을 때
+        sidebarOpened = false;
+        console.log(sidebarOpened);
+        whale.runtime.sendMessage('closed');
+    }
+});
+
+//window.innerWidth < 590
+function appendBtn(){
     var last_known_scroll_position = 0;
     var ticking = false;
 
@@ -302,12 +324,6 @@ if(window.innerWidth < 590) {
             isOpened = true;
         }
     });
-
-    document.addEventListener('DOMContentLoaded',()=>{
-        document.getElementsByClassName('_second')[0].children[1].onchange = ()=>{
-            console.log('changed');
-        }
-    })
 
     if (document.title.indexOf('네이버 증권') != -1) {
         document.body.removeChild(document.getElementsByClassName("btn_top _btn_floating_top")[0]);

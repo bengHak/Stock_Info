@@ -7,15 +7,6 @@ document.body.addEventListener('mouseup', function (e) {
     }
 }, false)
 
-document.addEventListener(`visibilitychange`, function () {
-    if (document.visibilityState === `visible`) {
-        // 사이드바가 열렸을 때
-        console.log("side bar");
-    } else {
-        // 사이드바가 닫혔을 때
-    }
-});
-
 //드래그 취소 했을 경우 버튼 사라지는 함수
 document.addEventListener("click", function () {
     var selected = getSelection();
@@ -65,7 +56,7 @@ function createtooltip() { // call this function ONCE at the end of page to crea
         'position:absolute; background:black; color:white; padding:4px;z-index:10000;'
         + 'border-radius:2px; font-size:12px;box-shadow:3px 3px 3px rgba(0,0,0,.4);'
         + 'opacity:0;transition:opacity 0.4s';
-    tooltip.innerHTML = '여기에 버튼';
+    tooltip.innerHTML = '<img src="">';
     document.body.appendChild(tooltip);
 }
 
