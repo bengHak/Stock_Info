@@ -1,16 +1,9 @@
 let id;
-let tempPort = null;
+let IsPCClicked = 0;
 
-
-//localstorage 테스트
-//cookie 지우면 다 지워짐
 console.log(localStorage.sites);
 console.log(typeof localStorage.sites);
 let temp;
-// let temp = JSON.parse(storageJson.sites);
-// console.log(typeof temp);
-// console.log(temp);
-// storageJson.sites = JSON.stringify(temp);
 
 if(localStorage.sites === undefined){
     localStorage.sites = '[]';
@@ -25,13 +18,13 @@ if (localStorage.sites === '[]') {
             url: 'http://dart.fss.or.kr/'
         }, {
             name: '한국거래소',
-            url: 'http://www.krx.co.kr/main/main.jsp'
+            url: 'http://www.krx.co.kr/'
         }, {
             name: 'KIND',
-            url: 'http://kind.krx.co.kr/main.do?method=loadInitPage&scrnmode=1'
+            url: 'http://kind.krx.co.kr/'
         },{
             name:'NICE 신용평가',
-            url: 'http://www.nicerating.com/main.do'
+            url: 'http://www.nicerating.com/'
         },{
             name:'연합인포맥스',
             url:'http://news.einfomax.co.kr/'
@@ -85,28 +78,6 @@ whale.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
                     url:'https://m.stock.naver.com',
                     reload : false
                 });
-
-                break;
-            }
-            case 'badge5': {
-                ws.setBadgeText({
-                    text: `5`
-                });
-                ws.setTitle({title: "변경 전"});
-                break;
-            }
-            // case 'badge4': {
-            //     ws.setBadgeText({
-            //         text: `4`
-            //     });
-            //     setTimeout(()=>{
-            //         ws.setTitle({title: "변경 후2"});
-            //     }, 2000);
-            //     ws.setTitle({title: "변경 후"});
-            //     break;
-            // }
-            case 'hide': {
-                ws.hide();
                 break;
             }
             case 'getItems':{
@@ -114,32 +85,19 @@ whale.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
                 sendResponse(localStorage.sites);
                 break;
             }
-            case 'closed':{
-                if(tempPort != null){
-                    tempPort.postMessage('close');
-                }
+            case 'checkPCVer':{
+                sendResponse(IsPCClicked);
                 break;
             }
-            case 'open':{
-                console.log('open');
-                console.log(id);
-                if(tempPort != null){
-                    tempPort.postMessage('open');
-                }
-                // whale.tabs.sendMessage(
-                //     id, {'isOpened':sidebarOpened}
-                // );
+            case 'IsPCClicked':{
+                IsPCClicked=0;
                 break;
             }
         }
     }
     else if(typeof msg === 'object') {
-        // storageJson.sites = JSON.parse(storageJson)
         if(msg.keyword === 'sites'){
-            console.log(localStorage.sites);
-            console.log(msg);
             localStorage.sites = msg.sites;
-            console.log(localStorage.sites);
         }
         else if(msg.keyword === 'qucikSearch'){
             console.log(msg.stock);
@@ -147,6 +105,17 @@ whale.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
                 'url': 'https://m.stock.naver.com/searchItem.nhn?keyword_input=&keyword='
                     + msg.stock
             });
+        } else if (msg.tagName === 'clickPCVerBtn'){
+            IsPCClicked=1;
+            whale.tabs.create({
+                url: msg.nowUrl
+            });
+        } else if (msg.tagName === 'sendurl') {
+            console.log(msg.nowUrl);
+            whale.tabs.create({
+                url: msg.nowUrl
+            });
+
         }
     }
 });

@@ -1,15 +1,9 @@
 let storage = window.localStorage;
 let tmpArr;
-console.log(storage.sites);
-
-//storage 초기설정
-whale.runtime.sendMessage('getItems', (response) => {
-    console.log(response);
-    storage.sites = response;
-});
 
 if (window.innerWidth < 590) {
-    var modalWin = document.createElement('div');
+
+    let modalWin = document.createElement('div');
     modalWin.id = 'modalWin';
     modalWin.style.cssText = '' +
         'display: none; /* Hidden by default */\n' +
@@ -21,33 +15,48 @@ if (window.innerWidth < 590) {
         '    height: 100%; /* Full height */\n' +
         '    overflow: auto; /* Enable scroll if needed */\n' +
         '    background-color: rgb(0,0,0); /* Fallback color */\n' +
-        '    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */';
+        '    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */' +
+        '    opacity:0;transition:opacity 0.3s;';
 
     window.onclick = function (event) {
         if (event.target === modalWin) {
-            modalWin.style.display = "none";
+            modalWin.style.opacity = 0;
+            setTimeout(()=>{
+                modalWin.style.display = 'none';
+            },400);
         }
     };
 
-    var mdContent = document.createElement('div');
+    let mdContent = document.createElement('div');
     mdContent.setAttribute('class', 'modal-content');
-    mdContent.style.cssText = 'background-color: #fefefe;\n' +
-        '    margin: 15% auto; /* 15% from the top and centered */\n' +
-        '    padding: 20px;\n' +
+    mdContent.style.cssText = 'background-color: #00d398;\n' +
+        '    position: fixed;' +
+        '    margin: 70px 40px; /* 15% from the top and centered */\n' +
+        '    padding: 30px 0;\n' +
+        '    border-radius: 2%;' +
         '    border: 1px solid #888;\n' +
         '    width: 80%; /* Could be more or less, depending on screen size */';
 
-    var mdClose = document.createElement('span');
-    mdClose.style.cssText = 'color:#aaa; float:center; font-size: 28px; font-weight: bold;';
-    mdClose.innerHTML = '&times;';
+    let mdClose = document.createElement('span');
+    mdClose.style.cssText = 'color:#081246; float:right; font-size: 20px; padding-top: 20px;' +
+        'padding-right: 10px;';
+    mdClose.innerHTML = '닫기';
     mdClose.onclick = () => {
-        modalWin.style.display = 'none';
+        modalWin.style.opacity = 0;
+        setTimeout(()=>{
+            modalWin.style.display = 'none';
+        },400);
     };
 
-    var mdText = document.createElement('p');
-    mdText.innerHTML += '<br><h1>Hello</h1><br>';
+    let mdText = document.createElement('div');
+    mdText.innerHTML += '추천 사이트 모음';
+    mdText.style.cssText = 'text-align:center; ' +
+        'color: #081246; ' +
+        'font-size: 2.5em; ' +
+        'font-weight: bold;' +
+        'margin-bottom: 30px; ' +
+        'margin-top: 10px;';
 
-    //init storage
     let setObj = (obj) => {
         storage.sites = JSON.stringify(obj);
         console.log(obj);
@@ -63,153 +72,68 @@ if (window.innerWidth < 590) {
         return JSON.parse(storage.sites);
     };
 
-    // var wSetObj = (key, obj)=>{
-    //     return whale.storage.local.set({
-    //         key: JSON.stringify(obj)
-    //     });
-    // };
-    //
-    // var wGetObj = (key)=>{
-    //     whale.storage.local.get(key, (res)=>{
-    //         return JSON.parse(res);
-    //     });
-    // };
+    let mdList = document.createElement('table');
+    mdList.style.cssText = 'margin-left: 20px;' +
+        'border-radius: 2%;' +
+        'background-color: #081246;';
 
-    var mdList = document.createElement('table');
-
-    // function deleteByUrl(array, value) {
-    //     console.log(array);
-    //     console.log(value);
-    //     for (let i = array.length - 1; i >= 0; i--) {
-    //         console.log(array[i]['url']);
-    //         if (array[i]['url'] === value) {
-    //             array = array.splice(i, 1);
-    //             console.log(array.length);
-    //             console.log('deleted');
-    //         }
-    //     }
-    //     console.log('spliced array');
-    //     console.log(array);
-    //     return array;
-    // }
-
-    function drawList2() {
-        // if(document.getElementById('0removeRow') !== null){
-        //     tmp_cnt++;
-        //     return;
-        // }
-
-        let tmp;
-        let tmp2;
-        // let tmp3;
+    let drawList2 = () => {
+        let tableRow;
+        let indexDiv;
+        let nameDiv;
+        let nameA;
+        let urlDiv;
+        let urlA;
 
         try {
             tmpArr = getObj();
         }
         catch (e) {
-            console.log('getObj() ERROR')
+            console.log('getObj() ERROR');
             return;
         }
 
-        console.log(tmpArr);
         for (let i = 0; i < tmpArr.length; i++) {
-            tmp = document.createElement('tr');
-            tmp2 = document.createElement('a');
-            tmp2.innerText = tmpArr[i].name;
-            tmp2.href = tmpArr[i].url;
-            // tmp3 = document.createElement('a');
-            // tmp3.id = i + 'removeRow';
-            // tmp3.innerText = 'x';
-            // tmp3.style.float = 'right';
-            // tmp3.style.fontWeight = 'bold';
-            // tmp3.onclick = (evt) => {
-            //     let url_ = evt.target.parentNode.children[0].href;
-            //     console.log(url_.slice(0, -1));
-            //     tmpArr = deleteByUrl(tmpArr, url_.slice(0, -1));
-            //     setObj(tmpArr);
-            //     evt.target.parentNode.remove();
-            // };
-            tmp.appendChild(tmp2);
-            // tmp.appendChild(tmp3);
-            mdList.appendChild(tmp);
+            tableRow = document.createElement('tr');
+
+            tableRow.onmouseover = (evt)=>{
+                console.log(evt.target.parentElement.parentNode);
+                evt.target.style.backgroundColor = '#fff';
+                evt.target.style.color = '#081246';
+            };
+
+            tableRow.onmouseout = (evt)=>{
+                evt.target.style.backgroundColor = '#081246';
+                evt.target.style.color = '#fff';
+            };
+            tableRow.style.color = '#fff';
+            tableRow.innerHTML = "&nbsp;&nbsp;&nbsp;" + tmpArr[i].name + '<br>' +
+                "&nbsp;&nbsp;&nbsp;&nbsp;-" + tmpArr[i].url;
+            tableRow.onclick = ()=>{
+                window.location.href = tmpArr[i].url;
+            };
+            mdList.appendChild(tableRow);
         }
-    }
+    };
 
-    setTimeout(drawList2(), 600);
+    let getData = (callback) => {
+        whale.runtime.sendMessage('getItems', (res)=>{
+            callback(res);
+        });
+    };
 
-    // function findObjectByKey(array, value) {
-    //     if (value === '') {
-    //         console.log('공백');
-    //         return '';
-    //     }
-    //     for (var i = 0; i < array.length; i++) {
-    //         if (array[i]['url'] === value) {
-    //             return array[i];
-    //         }
-    //     }
-    //     return null;
-    // }
+    let setLocal = (response) => {
+        console.log(response);
+        storage.sites = response;
+        drawList2();
+    };
 
-    // function saveSite(siteName, siteUrl) {
-    //     console.log('saveSite');
-    //     console.log(tmpArr);
-    //
-    //     let dupl = findObjectByKey(tmpArr, siteUrl);
-    //     console.log(dupl);
-    //     if (dupl != null) {
-    //         alert('이미 등록된 사이트입니다.');
-    //         return;
-    //     }
-    //
-    //     modalWin.removeChild(mdContent);
-    //     tmpArr.push({
-    //         'name': siteName,
-    //         'url': siteUrl
-    //     });
-    //     console.log('push 끝');
-    //     setObj(tmpArr);
-    //
-    //     setTimeout(()=>{
-    //         drawList2();
-    //         modalWin.appendChild(mdContent);
-    //     },500);
-    // }
 
-    // var mdForm = document.createElement('form');
-    // mdForm.onsubmit = () => {
-    //     saveSite(
-    //         mdInputName.value,
-    //         mdInputUrl.value
-    //     );
-    //
-    //     mdInputName.value = '';
-    //     mdInputUrl.value = '';
-    //
-    //     return false;
-    // };
-    //
-    // var mdInputName = document.createElement('input');
-    // mdInputName.type = 'text';
-    // mdInputName.name = 'name';
-    // mdInputName.placeholder = '사이트 이름';
-    //
-    // var mdInputUrl = document.createElement('input');
-    // mdInputUrl.type = 'url';
-    // mdInputUrl.name = 'url';
-    // mdInputUrl.placeholder = '사이트 주소';
-    //
-    // var mdInputSubmit = document.createElement('input');
-    // mdInputSubmit.type = 'submit';
-    // mdInputSubmit.value = '등록';
-    //
-    // mdForm.appendChild(mdClose);
-    // mdForm.appendChild(mdInputName);
-    // mdForm.appendChild(mdInputUrl);
-    // mdForm.appendChild(mdInputSubmit);
+    getData(setLocal);
+
     mdContent.appendChild(mdText);
     mdContent.appendChild(mdList);
     mdContent.appendChild(mdClose);
-    // mdContent.appendChild(mdForm);
     modalWin.appendChild(mdContent);
     document.body.appendChild(modalWin);
 }
