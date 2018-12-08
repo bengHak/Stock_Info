@@ -27,14 +27,11 @@
   "content_scripts":[
     {
       "matches": [
-        "http://*/*",
-        "https://*/*",
         "https://news.naver.com/*",
         "https://m.news.naver.com/*",
         "https://m.stock.naver.com/*",
         "https://finance.naver.com/*",
-        "https://kr.tradingview.com/*",
-        "https://m.post.naver.com/*"
+        "https://kr.tradingview.com/*"
       ],
       "js" : [
         "src/js/modal.js",

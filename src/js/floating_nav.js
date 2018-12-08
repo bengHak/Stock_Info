@@ -1,28 +1,32 @@
-// console.log(window.innerWidth);
-let sidebarOpened = false;
+// const port = whale.runtime.connect({name: `greetings`});
 
-const port = whale.runtime.connect({name: `greetings`});
-
-port.onMessage.addListener(message => {
-    console.log(message.sidebar);
-    appendBtn();
-});
-
-document.addEventListener(`visibilitychange`, function () {
-    if (document.visibilityState === `visible`) {
-        // 사이드바가 열렸을 때
-        sidebarOpened = true;
-        console.log(sidebarOpened);
-    } else {
-        // 사이드바가 닫혔을 때
-        sidebarOpened = false;
-        console.log(sidebarOpened);
-        whale.runtime.sendMessage('closed');
-    }
-});
+// port.onMessage.addListener(message => {
+//     console.log('get message');
+//     console.log(message);
+//     if(message === 'open'){
+//         appendBtn();
+//     }
+//     else if(message ==='close'){
+//         //location.reload();
+//     }
+// });
+//
+// document.addEventListener(`visibilitychange`, function () {
+//     if (document.visibilityState === `visible`) {
+//         // 사이드바가 열렸을 때
+//         console.log('열림');
+//         // whale.runtime.sendMessage('open');
+//         port.postMessage('open');
+//     } else {
+//         // 사이드바가 닫혔을 때
+//         console.log('닫힘');
+//         whale.runtime.sendMessage('closed');
+//     }
+// });
 
 //window.innerWidth < 590
-function appendBtn(){
+// function appendBtn(){
+if(window.innerWidth < 590){
     var last_known_scroll_position = 0;
     var ticking = false;
 

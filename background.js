@@ -1,40 +1,68 @@
-var storageJson = window.localStorage;
-let sidebarOpened = false;
+let id;
+let tempPort = null;
 
-try{
-    storageJson.sites = '[]';
-}
-catch (e) {
-    window.location.href = "http://stackoverflow.com/search?q=[js]+"
-    + e.message;
-}
 
 //localstorage 테스트
 //cookie 지우면 다 지워짐
-console.log(storageJson.sites);
-console.log(typeof storageJson.sites);
-var temp = JSON.parse(storageJson.sites);
-console.log(typeof temp);
-console.log(temp);
-temp.push({'다음': 'https://daum.net'});
-storageJson.sites = JSON.stringify(temp);
+console.log(localStorage.sites);
+console.log(typeof localStorage.sites);
+let temp;
+// let temp = JSON.parse(storageJson.sites);
+// console.log(typeof temp);
+// console.log(temp);
+// storageJson.sites = JSON.stringify(temp);
 
-//port
-whale.runtime.onConnect.addListener(port => {
-    console.log('send by connect');
-    if(sidebarOpened === true){
-        console.log(sidebarOpened + ' sidebar is opened');
-        port.postMessage({'sidebar':true});
-    }
-    else
-        console.log('closed');
-
-});
+if(localStorage.sites === undefined){
+    localStorage.sites = '[]';
+    console.log(localStorage.sites);
+}
+if (localStorage.sites === '[]') {
+    temp = JSON.parse(localStorage.sites);
+    console.log(temp);
+    temp.push(
+        {
+            name: '전자공시시스템',
+            url: 'http://dart.fss.or.kr/'
+        }, {
+            name: '한국거래소',
+            url: 'http://www.krx.co.kr/main/main.jsp'
+        }, {
+            name: 'KIND',
+            url: 'http://kind.krx.co.kr/main.do?method=loadInitPage&scrnmode=1'
+        },{
+            name:'NICE 신용평가',
+            url: 'http://www.nicerating.com/main.do'
+        },{
+            name:'연합인포맥스',
+            url:'http://news.einfomax.co.kr/'
+        },{
+            name:'매일경제',
+            url:'http://www.mk.co.kr/'
+        },{
+            name:'한국경제',
+            url:'http://www.hankyung.com/'
+        },{
+            name:'MK 경제지표',
+            url:'http://graph.mk.co.kr/'
+        },{
+            name:'키움증권',
+            url:'http://openstock.kiwoom.com/'
+        },{
+            name:'팍스넷',
+            url:'http://www.paxnet.co.kr/'
+        }
+        );
+    localStorage.sites = JSON.stringify(temp);
+    console.log(localStorage.sites);
+} else {
+    console.log('[] 아님');
+}
 
 //확장 앱 열렸을 때 실행되는 함수
 whale.sidebarAction.onClicked.addListener(res=>{
     console.log(res);
     sidebarOpened = res.opened;
+    id = res.windowId;
     return res;
 });
 
@@ -45,26 +73,6 @@ whale.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
             case 'getOpened':{
                 sendResponse(sidebarOpened);
                 break;
-            }
-            case 'showNaverFinance':{
-                try{
-                    console.log(whale.sidebarAction);
-                    whale.sidebarAction.isDocked(3,(res)=>{
-                        console.log(res);
-                    });
-                    // whale.sidebarAction.getDocked(0,(res)=> {
-                    //     console.log(res);
-                    // });
-                    console.log(storageJson);
-                    break;
-                }
-                catch (e) {
-                    console.log(e);
-                    whale.tabs.create({
-                        url: "https://instagram.com"
-                    });
-                    break;
-                }
             }
             case 'showTV':{
                 whale.tabs.create({
@@ -102,11 +110,25 @@ whale.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
                 break;
             }
             case 'getItems':{
-                sendResponse(storageJson);
+                console.log(localStorage.sites);
+                sendResponse(localStorage.sites);
                 break;
             }
             case 'closed':{
-                sidebarOpened = false;
+                if(tempPort != null){
+                    tempPort.postMessage('close');
+                }
+                break;
+            }
+            case 'open':{
+                console.log('open');
+                console.log(id);
+                if(tempPort != null){
+                    tempPort.postMessage('open');
+                }
+                // whale.tabs.sendMessage(
+                //     id, {'isOpened':sidebarOpened}
+                // );
                 break;
             }
         }
@@ -114,14 +136,10 @@ whale.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
     else if(typeof msg === 'object') {
         // storageJson.sites = JSON.parse(storageJson)
         if(msg.keyword === 'sites'){
-            console.log(storageJson);
-            storageJson.setItem(msg.siteUrl);
-        }
-        else if(msg.keyword === 'url'){
-            console.log(msg.siteUrl);
-            whale.tabs.create({
-                url: msg.siteUrl
-            });
+            console.log(localStorage.sites);
+            console.log(msg);
+            localStorage.sites = msg.sites;
+            console.log(localStorage.sites);
         }
         else if(msg.keyword === 'qucikSearch'){
             console.log(msg.stock);

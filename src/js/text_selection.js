@@ -53,10 +53,10 @@ function copySelectionText() {
 function createtooltip() { // call this function ONCE at the end of page to create tool tip object
     tooltip = document.createElement('a')
     tooltip.style.cssText =
-        'position:absolute; background:black; color:white; padding:4px;z-index:10000;'
-        + 'border-radius:2px; font-size:12px;box-shadow:3px 3px 3px rgba(0,0,0,.4);'
+        'position:absolute; padding:4px;z-index:10000; border-radius:50%;'
+        + ''
         + 'opacity:0;transition:opacity 0.4s';
-    tooltip.innerHTML = '<img src="">';
+    tooltip.innerHTML = '<img style="width:30px; height:30px; border-radius:50%; " src="https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c07d4f7af1d2f0d552cca75/e973b05aa5416907a7b3646e559f3e2a/searchicon.png">';
     document.body.appendChild(tooltip);
 }
 
@@ -69,8 +69,8 @@ function showtooltip(selected, block) {
     let sel = selected.getRangeAt(0).cloneRange().getBoundingClientRect()
     let relative = document.body.parentNode.getBoundingClientRect();
     copied = selected.toString();
-    tooltip.style.left = sel['left'] + "px"
-    tooltip.style.top = (sel['bottom'] - relative.top) + "px"
+    tooltip.style.left = sel['left'] + "px";
+    tooltip.style.top = (sel['bottom'] - relative.top) + "px";
     tooltip.style.opacity = 1;
 }
 
