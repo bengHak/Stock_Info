@@ -40,7 +40,7 @@ function getSelectionText() {
 
 //드래그 한 부분 복사해서 클립보드에 추가하는 함수
 function copySelectionText() {
-    var copysuccess // var to check whether execCommand successfully executed
+    var copysuccess; // var to check whether execCommand successfully executed
     try {
         copysuccess = document.execCommand("copy") // run command to copy selected text to clipboard
     } catch (e) {
@@ -53,7 +53,7 @@ function copySelectionText() {
 function createtooltip() { // call this function ONCE at the end of page to create tool tip object
     tooltip = document.createElement('a')
     tooltip.style.cssText =
-        'position:absolute; padding:4px;z-index:10000; border-radius:50%;'
+        'position:absolute; padding:4px;z-index:2147483645; border-radius:50%;'
         + ''
         + 'opacity:0;transition:opacity 0.4s';
     tooltip.innerHTML = '<img style="width:30px; height:30px; border-radius:50%; " src="https://trello-attachments.s3.amazonaws.com/5bf679a4a458e1518702c7a6/5c07d4f7af1d2f0d552cca75/e973b05aa5416907a7b3646e559f3e2a/searchicon.png">';

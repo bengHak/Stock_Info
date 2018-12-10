@@ -32,13 +32,13 @@ if (window.innerWidth < 590) {
     mdContent.style.cssText = 'background-color: #00d398;\n' +
         '    position: fixed;' +
         '    margin: 70px 40px; /* 15% from the top and centered */\n' +
-        '    padding: 30px 0;\n' +
+        '    padding: 10px 0;\n' +
         '    border-radius: 2%;' +
         '    border: 1px solid #888;\n' +
         '    width: 80%; /* Could be more or less, depending on screen size */';
 
     let mdClose = document.createElement('span');
-    mdClose.style.cssText = 'color:#081246; float:right; font-size: 20px; padding-top: 20px;' +
+    mdClose.style.cssText = 'color:#081246; float:right; font-size: 20px; font-weight:bold; padding-top: 20px;' +
         'padding-right: 10px;';
     mdClose.innerHTML = '닫기';
     mdClose.onclick = () => {
@@ -52,9 +52,9 @@ if (window.innerWidth < 590) {
     mdText.innerHTML += '추천 사이트 모음';
     mdText.style.cssText = 'text-align:center; ' +
         'color: #081246; ' +
-        'font-size: 2.5em; ' +
+        'font-size: 2.0em; ' +
         'font-weight: bold;' +
-        'margin-bottom: 30px; ' +
+        'margin-bottom: 15px; ' +
         'margin-top: 10px;';
 
     let setObj = (obj) => {
@@ -79,11 +79,6 @@ if (window.innerWidth < 590) {
 
     let drawList2 = () => {
         let tableRow;
-        let indexDiv;
-        let nameDiv;
-        let nameA;
-        let urlDiv;
-        let urlA;
 
         try {
             tmpArr = getObj();
@@ -103,12 +98,13 @@ if (window.innerWidth < 590) {
             };
 
             tableRow.onmouseout = (evt)=>{
-                evt.target.style.backgroundColor = '#081246';
+                evt.target.style.backgroundColor = '';
                 evt.target.style.color = '#fff';
             };
             tableRow.style.color = '#fff';
-            tableRow.innerHTML = "&nbsp;&nbsp;&nbsp;" + tmpArr[i].name + '<br>' +
-                "&nbsp;&nbsp;&nbsp;&nbsp;-" + tmpArr[i].url;
+            tableRow.style.fontSize = '1.0em';
+            tableRow.innerHTML = "<br>&nbsp;&nbsp;&nbsp;" + tmpArr[i].name + '<br>' +
+                "&nbsp;&nbsp;&nbsp; ☛ &nbsp; " + tmpArr[i].url + '<br>';
             tableRow.onclick = ()=>{
                 window.location.href = tmpArr[i].url;
             };
@@ -137,4 +133,3 @@ if (window.innerWidth < 590) {
     modalWin.appendChild(mdContent);
     document.body.appendChild(modalWin);
 }
-

@@ -1,5 +1,3 @@
-//1927
-
 whale.runtime.sendMessage('checkPCVer',(IsPCClicked)=>{
     if(IsPCClicked === 1){
         whale.runtime.sendMessage('IsPCClicked');
@@ -53,7 +51,7 @@ if(window.innerWidth < 590){
         "nt0" : '네이버 증권 페이지',
         "nt1" : '',
         "nt2" : '네이버 경제 신문 페이지',
-        "nt3" : '비로그인 사용자들을 위한 즐겨찾기',
+        "nt3" : '주식관련 추천 사이트',
         "nt4" : '네이버 로그인 사용자들을 위한 My 탭',
         "ft0" : '추가기능 버튼',
         "ft1" : '브라우저에서 현재페이지 확대해서 보기 (모바일 페이지 → 브라우저 페이지)',
@@ -243,7 +241,7 @@ if(window.innerWidth < 590){
 
     //새탭으로 보기 + 모바일 페이지도 변환 시켜주기
     fltImg1.onclick = () => {
-        var sendURL = {
+        let sendURL = {
             tagName: "sendurl",
             nowUrl: window.location.href
         };
@@ -296,12 +294,12 @@ if(window.innerWidth < 590){
         if(location.href.substring(0,47) === 'https://m.stock.naver.com/item/main.nhn#/stocks'){
             let stockCode = location.href.substring(48,54);
             whale.runtime.sendMessage({
-                tagname:'sendurl',
+                tagName:'sendurl',
                 nowUrl: 'https://kr.tradingview.com/symbols/KRX-' + stockCode
             });
         }
         else{
-            whale.xqruntime.sendMessage('showTV');
+            whale.runtime.sendMessage('showTV');
         }
     };
 
@@ -410,6 +408,8 @@ if(window.innerWidth < 590){
     });
 
     if (document.title.indexOf('네이버 증권') !== -1) {
+        document.getElementsByClassName('Ngnb')[0].style.position = 'fixed';
+        document.getElementsByClassName('Ngnb')[0].style.top = '0';
         document.body.removeChild(document.getElementsByClassName("btn_top _btn_floating_top")[0]);
     }
 }
