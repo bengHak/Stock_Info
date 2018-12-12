@@ -5,13 +5,17 @@
   // 고정
   "name": "스톡인포(실시간 주식확인 확장앱)",
   "version": "1.0.0",
+  "icons": {
+    "128": "./icons/mainIcon_128.png"
+  },
   // 추천
   "description": "사이드바에 최적화된 주식 모니터링 확장앱",
 
   "sidebar_action": {
     "default_title":  "스톡인포",
     "default_icon": {
-      "32": "./icons/mainIcon.png"
+      "32": "/icons/mainIcon.png",
+      "128": "./icons/mainIcon_128.png"
     },
     "default_page": "src/index.html",
     "use_navigation_bar": true,

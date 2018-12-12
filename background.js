@@ -47,8 +47,8 @@ if (localStorage.sites === '[]') {
 let timerId = null;
 function createNoti(obj) {
     console.log(obj);
+    //id가 없는 경우 undefined로 넘어감
     let id = obj.id;
-
     if(obj.type === 'marketEnd30m'){
         whale.notifications.create(
             id,
@@ -57,6 +57,18 @@ function createNoti(obj) {
                 iconUrl: '/icons/mainIcon.png',
                 title : "스톡인포 알림",
                 message: "주식 장 마감 시간 30분 전입니다."
+            },
+            ()=>{}
+        );
+    }
+    else if(obj.type === 'marketEnd'){
+        whale.notifications.create(
+            id,
+            {
+                type:'basic',
+                iconUrl: '/icons/mainIcon.png',
+                title : "스톡인포 알림",
+                message: "주식 장 마감되었습니다."
             },
             ()=>{}
         );
@@ -158,13 +170,13 @@ function createNoti(obj) {
 let myStockList;
 function setStockList(obj){
     myStockList = JSON.parse(obj);
-    console.log(myStockList);
+    // console.log(myStockList);
 }
 
 function StartClock(){
     timerId = setInterval(()=>{
         httpGetAsync('https://m.stock.naver.com/api/json/noti/getNotiOverall.nhn', setStockList);
-        console.log('interval');
+        // console.log('interval');
         let today = new Date();
         let hh = today.getHours();
         let mi = today.getMinutes();
@@ -176,7 +188,7 @@ function StartClock(){
             for(let i=0; i<stockList.length; i++){
                 //시가 알림
                  if(hh===9 && mi===0 && ss===10 && stockList[i].nov==='Y'){
-                     obj.id = today.toString();
+                     obj.id = today.toString() + i.toString();
                      obj.stockName = stockList[i].nm;
                      obj.type = 'nov';
                      obj.price = stockList[i].nv;
@@ -184,18 +196,17 @@ function StartClock(){
                  }
                  //종가 알림
                  if(hh===15 && mi===30 && ss===0 && stockList[i].ncv==='Y'){
-                     obj.id = today.toString();
+                     obj.id = today.toString() + i.toString();
                      obj.stockName = stockList[i].nm;
                      obj.type = 'ncv';
                      obj.price = stockList[i].nv;
                      createNoti(obj);
                  }
-                 console.log(stockList[i].ntv.length + '배열 길이');
                  //목표가 알림
                  for(let j=0; j<stockList[i].ntv.length; j++){
                      if(stockList[i].ntv[j].en ==='Y'){
                          if(stockList[i].ntv[j].vt === '1' && stockList[i].nv === stockList[i].ntv[j].tv){
-                             obj.id = today.toString();
+                             obj.id = today.toString() + i.toString() + j.toString();
                              obj.stockName = stockList[i].nm;
                              obj.type = 'ntv1';
                              obj.price = stockList[i].nv;
@@ -207,7 +218,7 @@ function StartClock(){
                              sessionStorage.setItem(obj.stockName,obj.price);
                          }
                          else if(stockList[i].ntv[j].vt === '2' && stockList[i].nv === stockList[i].ntv[j].tv){
-                             obj.id = today.toString();
+                             obj.id = today.toString() + j.toString();
                              obj.stockName = stockList[i].nm;
                              obj.type = 'ntv2';
                              obj.price = stockList[i].nv;
@@ -237,24 +248,14 @@ function StartClock(){
         } else if(hh===9 && mi===0 && ss===0){
             obj.type = 'marketStart';
             createNoti(obj);
+        } else if(hh===15 && mi===30 && ss===0){
+            obj.type = 'marketEnd';
+            createNoti(obj);
         }
     }, 1000);
 }
 
 StartClock();
-
-//테스트용
-// let obj1={
-//     id:'',
-//     stockName:'',
-//     type:'',
-//     price:''
-// };
-// obj1.id = '벨렐';
-// obj1.stockName = '병학전자';
-// obj1.type = 'nov';
-// obj1.price = 3000000;
-// createNoti(obj1);
 
 function httpGetAsync(theUrl, callback)
 {

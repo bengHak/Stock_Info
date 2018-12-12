@@ -1,9 +1,10 @@
+//사이드바에서 pc버전 클릭으로 이동된 사이트일 경우인지 판단하는 함수
 whale.runtime.sendMessage('checkPCVer',(IsPCClicked)=>{
     if(IsPCClicked === 1){
         whale.runtime.sendMessage('IsPCClicked');
         setTimeout(()=>{
             document.getElementById('pcVersion').click();
-        },2000);
+        },400);
     }
 });
 
@@ -249,7 +250,6 @@ if(window.innerWidth < 590){
         if (document.getElementById('pcVersion') !== null) {
             sendURL.tagName = 'clickPCVerBtn';
             sendURL.nowUrl = window.location.href;
-            console.log('Clickde PCver Btn.');
             whale.runtime.sendMessage(sendURL);
         } else {
             sendURL.tagName = 'sendurl';
