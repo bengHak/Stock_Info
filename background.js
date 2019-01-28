@@ -178,11 +178,13 @@ function StartClock(){
         httpGetAsync('https://m.stock.naver.com/api/json/noti/getNotiOverall.nhn', setStockList);
         // console.log('interval');
         let today = new Date();
+        let dd = today.getDay();
         let hh = today.getHours();
         let mi = today.getMinutes();
         let ss = today.getSeconds();
         let obj = {};
-
+        if(dd === 0 || dd === 6)
+            return;
         let stockList = myStockList.result.list;
         if (stockList !== null && (today.getDay() !== 5 || today.getDay() !== 6)){
             for(let i=0; i<stockList.length; i++){

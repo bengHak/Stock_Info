@@ -4,7 +4,7 @@
 
   // 고정
   "name": "스톡인포(실시간 주식확인 확장앱)",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "icons": {
     "128": "./icons/mainIcon_128.png"
   },
