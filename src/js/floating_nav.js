@@ -314,7 +314,7 @@ if(window.innerWidth < 590){
     document.getElementById('stock_info_nav').appendChild(tn0);
     document.getElementById('stock_info_nav').appendChild(tn1);
     document.getElementById('stock_info_nav').appendChild(tn2);
-    document.getElementById('stock_info_nav').appendChild(tn3);
+    // document.getElementById('stock_info_nav').appendChild(tn3);
     document.getElementById('stock_info_nav').appendChild(tn4);
     document.getElementById('floating-button-0').appendChild(fltImg0);
     document.getElementById('floating-button-1').appendChild(fltImg1);
